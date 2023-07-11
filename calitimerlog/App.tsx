@@ -1,36 +1,21 @@
-import React from "react";
-import {View, StyleSheet, ImageBackground, ViewStyle, Dimensions} from "react-native";
+import React, {useEffect} from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {createStackNavigator} from "@react-navigation/stack";
 
-type Styles = {
-  container: ViewStyle,
-  imageBackground: ViewStyle
-}
+import SignUp from "./screens/signUp/signup";
+import LoadingScreen from "./screens/loading/loading";
 
-const styles = StyleSheet.create<Styles>({
-  container: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get("window").height,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#e4dfcd",
-  },
-  imageBackground: {
-    width: 200, 
-    height: 200, 
-    resizeMode: "cover",
-    justifyContent: "center"
-  }
-})
+const Stack = createStackNavigator();
 
 const App = () => {
-  return(
-  <View style={styles.container}>
-    <ImageBackground source={require("./assets/mainLoading/maybelogooo.png")} style={styles.imageBackground}/>
-  </View>
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 export default App;
-
-
