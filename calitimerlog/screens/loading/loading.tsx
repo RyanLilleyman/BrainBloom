@@ -1,13 +1,14 @@
 import React, {useEffect} from "react";
 import {View, StyleSheet, ImageBackground, ViewStyle, Dimensions, ActivityIndicator} from "react-native";
 
+
 type Styles = {
   container: ViewStyle,
   imageBackground: ViewStyle
 }
 
 type LoadingScreenProps = {
-  navigation: object;
+  navigation: any;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -17,11 +18,11 @@ const styles = StyleSheet.create<Styles>({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#e4dfcd",
+    backgroundColor: "#ede8de",
   },
   imageBackground: {
-    width: 200, 
-    height: 200, 
+    width: 400, 
+    height: 400, 
     resizeMode: "cover",
     justifyContent: "center"
   }
@@ -33,14 +34,14 @@ const styles = StyleSheet.create<Styles>({
 const LoadingScreen: React.FC<LoadingScreenProps> = ({navigation}) => {
   useEffect (() => {
     const timer = setTimeout(() => {
-      navigation.replace("SignUp");
+      navigation.replace('SignIn');
     }, 3000);
-    }, [navigation])
+  }, [navigation])
   
 
   return(
   <View style={styles.container}>
-    <ImageBackground source={require("./mainLoading/maybelogooo.png")} style={styles.imageBackground}/>
+    <ImageBackground source={require("./mainLoading/stringLoad.png")} style={styles.imageBackground}/>
   </View>
   );
 }

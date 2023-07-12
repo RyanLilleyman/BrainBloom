@@ -4,8 +4,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
 
 
-
-import SignUp from "./screens/signUp/signup";
+import SignIn from "./screens/signUp/signin";
 import LoadingScreen from "./screens/loading/loading";
 
 const Stack = createStackNavigator();
@@ -21,7 +20,7 @@ const App = () => {
         }
       >
         <Stack.Screen name="Loading" component={LoadingScreen} />
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignIn" component={SignIn} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
