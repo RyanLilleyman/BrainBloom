@@ -3,7 +3,6 @@ import React from 'react';
 import { 
   View,
   Text,
-
   StyleSheet,
   ViewStyle as RNViewStyle,
   ImageBackground, useWindowDimensions
@@ -32,6 +31,7 @@ const SignIn = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           resizeMode: 'cover',
           width: window.width,
           height: window.height,
@@ -40,12 +40,11 @@ const SignIn = () => {
           display:'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          width:'100#',
-          height:'80%',
+          
+          width:'98%',
+          height:'70%',
           backgroundColor: '#8F7B6A',
           borderRadius: 10,
-          marginRight: 10,
-          marginLeft:10,
           opacity: 0.5
         },
         separator: {
