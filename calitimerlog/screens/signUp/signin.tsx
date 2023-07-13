@@ -5,7 +5,11 @@ import {
   Text,
   StyleSheet,
   ViewStyle as RNViewStyle,
-  ImageBackground, useWindowDimensions
+  ImageBackground,
+  useWindowDimensions,
+  Button,
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
      
 
@@ -14,12 +18,18 @@ interface ViewStyle extends RNViewStyle{
   height?: number | string;
 }
 
+/**
+ * Renders the sign-in screen with an image background and loading text.
+ *
+ * @return {JSX.Element} The sign-in screen component.
+ */
 const SignIn = () => {
     type Styles = {
         container: ViewStyle;
         separator: ViewStyle;
         image: ViewStyle;
         box: ViewStyle;
+        button: any;
         text: any;
     }
 
@@ -27,55 +37,95 @@ const SignIn = () => {
     const window = useWindowDimensions();
 
     const styles = StyleSheet.create({
-        image: {
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          resizeMode: 'cover',
-          width: window.width,
-          height: window.height,
-        },
-        box: {
-          display:'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          
-          width:'98%',
-          height:'70%',
-          backgroundColor: '#8F7B6A',
-          borderRadius: 10,
-          opacity: 0.5
-        },
-        separator: {
-          marginVertical: 8,
-          borderBottomColor: '#737373',
-          borderBottomWidth: StyleSheet.hairlineWidth,
+      container: {
+        flex: 1,
+      },
+      image: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+        backgroundColor: '#ede8de',
+
+      },
+      box: {
+        display:'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        
+        width:'98%',
+        height:'65%',
+        backgroundColor: 'rgba(143, 123, 106, 0.5)', // 'rgba' value equivalent to #8F7B6A at 50% opacity
+        borderRadius: 10,
+      },
+      separator: {
+        height: 1,
+        width: '45%',
+        marginVertical: 8,
+        borderBottomColor: 'white',
+        borderBottomWidth: StyleSheet.hairlineWidth,
       },
       text: {
+        color: 'white',
         fontSize: 22,
         textAlign:'center',
-        opacity: 1
+        opacity:1
+      },
+      button: {
+        backgroundColor: 'black',
+        marginVertical: 8,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        padding: 10,
+      },
+      scrollViewContent: {
+        flexGrow: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      inLine: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
       }
-    }) 
-
+  });
+  
+    /**
+     * Renders a separator component.
+     *
+     * @return {JSX.Element} A JSX element representing the separator.
+     */
     const Separator = () => (
       <View style={styles.separator} />
     )
 
-
-
-
-
     return (
-        <ImageBackground source={require('./images/rocky.png')} style={styles.image}>
+        <View style = {styles.image}>
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={styles.box}>
-              <Text style={styles.text}>Loading</Text>
-              <Separator/>
-              <Text style={styles.text}>Loading</Text>
+              <TouchableOpacity
+               style={styles.button}
+               onPress={() => console.log('Sign In Pressed')}>
+              <Text style={styles.text}>Sign In</Text>
+              </TouchableOpacity>
+              <View style={styles.inLine}>
+                <Separator/>
+                <Text style={styles.text}>Or</Text>
+                <Separator/>
+              </View>
+              <TouchableOpacity
+               style={styles.button}
+               onPress={() => console.log('Sign Up Pressed')}>
+              <Text style={styles.text}>Sign Up</Text>
+              </TouchableOpacity>
             </View>
-        </ImageBackground>
-    );
+          </ScrollView>
+        </View>
+        </View>
+
+  );
+  
 }
 
 export default SignIn;
