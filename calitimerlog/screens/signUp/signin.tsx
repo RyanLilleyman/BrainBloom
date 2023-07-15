@@ -9,7 +9,10 @@ import {
   useWindowDimensions,
   Button,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  TextInput,
+  Image
+
 } from 'react-native';
      
 
@@ -31,6 +34,7 @@ const SignIn = () => {
         box: ViewStyle;
         button: any;
         text: any;
+        textInput: any;
     }
 
 
@@ -39,39 +43,43 @@ const SignIn = () => {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
+        backgroundColor: '#B2D8D8',
       },
       image: {
         flex: 1,
-        resizeMode: 'cover',
+        height: '100%',
+        display: 'flex',
         justifyContent: 'center',
-        backgroundColor: '#ede8de',
-
+        alignItems: 'center',
       },
       box: {
         display:'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        
+        resizeMode: 'cover',
         width:'98%',
-        height:'65%',
-        backgroundColor: 'rgba(143, 123, 106, 0.5)', // 'rgba' value equivalent to #8F7B6A at 50% opacity
+        height:'80%',
         borderRadius: 10,
+        overflow: 'hidden',
       },
       separator: {
         height: 1,
-        width: '45%',
+        width: '40%',
         marginVertical: 8,
         borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
       },
       text: {
-        color: 'white',
+        
+        color: '#FDFEFE',
         fontSize: 22,
         textAlign:'center',
-        opacity:1
+        opacity:1,
+        marginHorizontal:10,
       },
       button: {
-        backgroundColor: 'black',
+        width: 200,
+        backgroundColor: '#367872',
         marginVertical: 8,
         marginHorizontal: 10,
         borderRadius: 10,
@@ -87,6 +95,13 @@ const SignIn = () => {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+      },
+      textInput:{
+        width: '70%',
+        height: 40,
+        marginHorizontal: 10,
+        borderBottomColor: 'white',
+        borderBottomWidth: StyleSheet.hairlineWidth,
       }
   });
   
@@ -100,10 +115,24 @@ const SignIn = () => {
     )
 
     return (
-        <View style = {styles.image}>
+        
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={styles.box}>
+            <ImageBackground source={require('./images/UP1.png')} style={styles.image}>
+              
+              <TextInput style={styles.textInput} 
+              placeholder="Email"
+              placeholderTextColor="white"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              />
+              <TextInput style={styles.textInput} placeholder='Password'
+              placeholderTextColor="white"
+              secureTextEntry
+              />
+
               <TouchableOpacity
                style={styles.button}
                onPress={() => console.log('Sign In Pressed')}>
@@ -111,7 +140,7 @@ const SignIn = () => {
               </TouchableOpacity>
               <View style={styles.inLine}>
                 <Separator/>
-                <Text style={styles.text}>Or</Text>
+                <Text style={styles.text}>or</Text>
                 <Separator/>
               </View>
               <TouchableOpacity
@@ -119,10 +148,11 @@ const SignIn = () => {
                onPress={() => console.log('Sign Up Pressed')}>
               <Text style={styles.text}>Sign Up</Text>
               </TouchableOpacity>
+            </ImageBackground>
             </View>
           </ScrollView>
         </View>
-        </View>
+        
 
   );
   

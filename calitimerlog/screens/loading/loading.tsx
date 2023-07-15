@@ -1,6 +1,12 @@
-import React, {useEffect} from "react";
-import {View, StyleSheet, ImageBackground, ViewStyle, Dimensions, ActivityIndicator} from "react-native";
-
+import React, { useEffect, useRef } from 'react';
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  ViewStyle,
+  Dimensions,
+  Animated
+} from 'react-native';
 
 type Styles = {
   container: ViewStyle,
@@ -14,38 +20,52 @@ type LoadingScreenProps = {
 const styles = StyleSheet.create<Styles>({
   container: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get("window").height,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ede8de",
+    height: Dimensions.get('window').height,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fefefe',
   },
   imageBackground: {
-    width: 400, 
-    height: 400, 
-    resizeMode: "cover",
-    justifyContent: "center"
-  }
+    width: 400,
+    height: 400,
+    resizeMode: 'cover',
+    justifyContent: 'center'
+  },
 })
 
+const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
+  //initialize fadeAnim as a 
+  const fadeAnim = useRef(new Animated.Value(0)).current; 
 
+  useEffect(() => {
+    // fade in
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start(() => {
+      // hold for 1 second
+      setTimeout(() => {
+        // fade out
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: true,
+        }).start(() => {
+          navigation.replace('SignIn');
+        });
+      }, 2000); // delay for 1 second
+    });
+  }, [fadeAnim, navigation])
 
-
-const LoadingScreen: React.FC<LoadingScreenProps> = ({navigation}) => {
-  useEffect (() => {
-    const timer = setTimeout(() => {
-      navigation.replace('SignIn');
-    }, 3000);
-  }, [navigation])
-  
-
-  return(
-  <View style={styles.container}>
-    <ImageBackground source={require("./mainLoading/stringLoad.png")} style={styles.imageBackground}/>
-  </View>
+  return (
+    <View style={styles.container}>
+      <Animated.View style={{ opacity: fadeAnim }}>
+        <ImageBackground source={require("./mainLoading/logo3.png")} style={styles.imageBackground} />
+      </Animated.View>
+    </View>
   );
 }
 
 export default LoadingScreen;
-
-
