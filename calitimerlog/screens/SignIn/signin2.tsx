@@ -47,6 +47,9 @@ const SignIn2 = ({navigation}) => {
       container: {
         flex: 1,
         backgroundColor: '#dee3d2',
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 20,
       },
       image: {
         position: 'absolute',
@@ -63,7 +66,7 @@ const SignIn2 = ({navigation}) => {
         resizeMode: 'cover',
         borderRadius: 10,
         overflow: 'hidden',
-        backgroundColor: 'rgba(222, 227, 210, 0.5)',
+        backgroundColor: 'rgba(244, 246, 243, 0.5)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -80,25 +83,33 @@ const SignIn2 = ({navigation}) => {
         borderBottomWidth: StyleSheet.hairlineWidth,
       },
       text: {
-        color: '#FDFEFE',
+        color: '#404040',
         fontSize: 22,
         textAlign:'center',
         opacity:1,
         marginHorizontal:10,
       },
       text2: {
-        color: '#FDFEFE',
+        color: '#404040',
         fontSize: 22,
         opacity:1,
         marginTop: 40
       },
       text3: {
-        color: '#FDFEFE',
+        color: '#404040',
         marginRight:100,
+      },
+      text4:
+      {
+        color: '#F5F5F5',
+        fontSize: 22,
+        textAlign:'center',
+        opacity:1,
+        marginHorizontal:10,
       },
       button: {
         width: 150,
-        backgroundColor: '#367872',
+        backgroundColor: '#03363D',
         marginVertical: 20,
         marginHorizontal: 10,
         borderRadius: 10,
@@ -117,13 +128,13 @@ const SignIn2 = ({navigation}) => {
       },
       inputContainer :{
         width: 250,
-        height: 100,
+        height: 90,
         display: 'flex',
       },
       textInput:{
         flex: 1,
         margin:0,
-        borderBottomColor: '#FDFEFE',
+        borderBottomColor: '#404040',
         borderBottomWidth: 1,
       }
   });
@@ -140,7 +151,7 @@ const SignIn2 = ({navigation}) => {
     return (
         
         <View style={styles.container}>
-          <ImageBackground source={require('./images/UP1.png')} style={styles.image} />
+          <ImageBackground source={require('./images/UP23.png')} style={styles.image} />
           <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={styles.box}>
               <View style={styles.inputContainer}>
@@ -172,17 +183,17 @@ const SignIn2 = ({navigation}) => {
                onPress={() => 
                 console.log('Sign In Pressed')
                }>
-              <Text style={styles.text}>Sign In</Text>
+              <Text style={styles.text4}>Sign In</Text>
               </TouchableOpacity>
               <View style={styles.inLine}>
                 <Separator/>
-                <Text style={styles.text}>or</Text>
+                <Text style={styles.text4}>or</Text>
                 <Separator/>
               </View>
               <TouchableOpacity
                style={styles.button}
                onPress={() => navigation.navigate('SignUpForm')}>
-              <Text style={styles.text}>Sign Up</Text>
+              <Text style={styles.text4}>Sign Up</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>

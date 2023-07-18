@@ -18,7 +18,7 @@ export default function CheckBox(props) {
         height: 20, 
         width: 20,
         borderWidth: 1,
-        borderColor: '#FDFEFE',
+        borderColor: '#404040',
         alignItems: 'center',
         justifyContent: 'center',
       }}

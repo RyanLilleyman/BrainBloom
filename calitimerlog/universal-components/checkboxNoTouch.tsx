@@ -9,15 +9,17 @@ export default function CheckBoxNoTouch(props) {
         marginTop:props.mT,
         marginRight:props.mR,
         marginLeft:props.mL,
-        height: 20, 
-        width: 20,
+        height: 10, 
+        width: 10,
         borderWidth: 1,
-        borderColor: '#FDFEFE',
+        borderColor: '#404040',
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
-      {props.isSelected && <Text>✓</Text>}
+      {props.isSelected && <Text style={{
+        fontSize: 10,
+        color: '#404040'}}>X</Text>}
     </TouchableOpacity>
   );
 }
