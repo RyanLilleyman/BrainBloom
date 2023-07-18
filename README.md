@@ -4,7 +4,7 @@ BrainBloom is an app that brings metacognitive therapy right to your fingertips.
 
 ![BrainBloom Logo](Link-to-logo-here)
 
-## Features
+##  Future Features
 
 - Interactive thought records: Record and analyze your thoughts with interactive exercises
 - Daily emotion tracking: Track your emotions and understand your patterns over time
@@ -16,20 +16,11 @@ BrainBloom is an app that brings metacognitive therapy right to your fingertips.
 
 ### Installation
 
-You can download BrainBloom from the Apple App Store or Google Play Store. After downloading, open the app and create an account to get started.
-
-### Usage
-
-Once you've created an account, you can begin exploring the different features of the app. We recommend starting with a guided metacognitive meditation session to familiarize yourself with the concepts.
+BrainBloom is currently in development. Star this repository and watch for its release!
 
 ## Contributing
 
 We welcome contributions from the community! Please read our [contribution guidelines](Link-to-contribution-guidelines-here) before getting started.
 
-## Support
 
-If you encounter any problems or have any questions, please check our [FAQ](Link-to-FAQ-here) or contact our support team at support@brainbloom.com.
 
-## License
-
-This project is licensed under the terms of the XYZ license. You can read the full license [here](Link-to-license-here).
