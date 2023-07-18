@@ -2,7 +2,7 @@
 
 BrainBloom is an app that brings metacognitive therapy right to your fingertips. Our goal is to help users understand and reshape their thought patterns, creating a healthier, happier mind.
 
-![BrainBloom Logo](https://github.com/RyanLilleyman/BrainBloom/blob/main/banner.png)
+![BrainBloom Logo](https://github.com/RyanLilleyman/BrainBloom/blob/main/banner.gif)
 
 ##  Future Features
 
