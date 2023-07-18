@@ -24,7 +24,7 @@ const styles = StyleSheet.create<Styles>({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fefefe',
+    backgroundColor: '#dee3d2',
   },
   imageBackground: {
     width: 400,
@@ -53,7 +53,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
           duration: 1000,
           useNativeDriver: true,
         }).start(() => {
-          navigation.replace('SignIn');
+          navigation.replace('SignIn2');
         });
       }, 2000); // delay for 1 second
     });
@@ -62,7 +62,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Animated.View style={{ opacity: fadeAnim }}>
-        <ImageBackground source={require("./mainLoading/logo3.png")} style={styles.imageBackground} />
+        <ImageBackground source={require("./mainLoading/logo6.png")} style={styles.imageBackground} />
       </Animated.View>
     </View>
   );
