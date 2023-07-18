@@ -1,7 +1,0 @@
-Main Color - Soft Blue: This could be your primary color, providing a soothing and trustworthy base. An example in hexadecimal color code would be #89ABE3.
-
-Secondary Color - Light Green: To complement the soft blue and add a touch of growth and renewal. An example might be #B2D8D8.
-
-Accent Color - Creamy White: A soft, warm neutral that can balance out the cool tones of blue and green. An example might be #FDFEFE.
-
-Highlight Color - Teal: A color that signifies clarity and communication, perfect for important buttons or highlights. An example might be #48B6A3.
