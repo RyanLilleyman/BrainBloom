@@ -78,7 +78,7 @@ const SignIn2 = ({ navigation }) => {
       shadowOpacity: .5,
       shadowRadius: 3.84,
       elevation: 20,
-      paddingHorizontal: 30,
+      paddingHorizontal: 40,
       paddingVertical: 20
     },
     separator: {
