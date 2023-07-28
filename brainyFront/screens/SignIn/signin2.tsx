@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Input, Icon, Button } from "react-native-elements";
 import CheckBox from "../../universal-components/checkBox";
 import {
   View,
@@ -7,7 +8,6 @@ import {
   ViewStyle as RNViewStyle,
   ImageBackground,
   useWindowDimensions,
-  Button,
   TouchableOpacity,
   ScrollView,
   TextInput,
@@ -25,7 +25,8 @@ interface ViewStyle extends RNViewStyle {
  * @return {JSX.Element} The sign-in screen component.
  */
 const SignIn2 = ({ navigation }) => {
-  const [isSelected, setSelection] = useState(false);
+  const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   type Styles = {
     container: ViewStyle;
     separator: ViewStyle;
@@ -35,8 +36,9 @@ const SignIn2 = ({ navigation }) => {
     text: any;
     textInput: any;
   };
-  const handleCheck = () => {
-    setSelection(!isSelected);
+  
+  const toggleSecureEntry = () => {
+    setSecureTextEntry((prevSecureTextEntry) => !prevSecureTextEntry);
   };
 
   const window = useWindowDimensions();
@@ -46,7 +48,7 @@ const SignIn2 = ({ navigation }) => {
       flex: 1,
       backgroundColor: "#023c49",
       justifyContent: "center",
-      paddingHorizontal: '10%',
+      paddingHorizontal: "10%",
       // paddingTop: 20,
     },
     image: {
@@ -70,16 +72,16 @@ const SignIn2 = ({ navigation }) => {
       alignItems: "center",
       // minHeight: "70%",
       // minWidth: "50%",
-      shadowColor: '#000000',
+      shadowColor: "#000000",
       shadowOffset: {
         width: 3,
         height: 3,
       },
-      shadowOpacity: .5,
+      shadowOpacity: 0.5,
       shadowRadius: 3.84,
       elevation: 20,
       paddingHorizontal: 40,
-      paddingVertical: 20
+      paddingVertical: 20,
     },
     separator: {
       height: 1,
@@ -172,21 +174,31 @@ const SignIn2 = ({ navigation }) => {
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.text2}>Password...</Text>
+            <Input
+              placeholder="Input your password"
+              secureTextEntry={secureTextEntry}
+              onChangeText={(text) => setPassword(text)}
+              value={password}
+              rightIcon={
+                <Button
+                  icon={
+                    secureTextEntry ? (
+                      <Icon name="eye-off" type="feather" />
+                    ) : (
+                      <Icon name="eye" type="feather" />
+                    )
+                  }
+                  type="clear"
+                  onPress={toggleSecureEntry}
+                />
+              }
+            />
+
             <TextInput
               style={styles.textInput}
               placeholderTextColor="white"
               secureTextEntry={!isSelected}
             />
-          </View>
-          <View style={styles.inLine}>
-            <CheckBox
-              mT={20}
-              mB={20}
-              mR={20}
-              isSelected={isSelected}
-              onPress={handleCheck}
-            />
-            <Text style={styles.text3}>Show password</Text>
           </View>
           <TouchableOpacity
             style={styles.button}
