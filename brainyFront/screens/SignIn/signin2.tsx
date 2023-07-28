@@ -4,10 +4,13 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import FloatingLabelInput from "../../universal-components/FloatingLabelInput";
+import Separator from "../../universal-components/Separator";
+import { Colors, Sizes } from "../../universal-components/Separator";
 
 const SignIn2 = ({ navigation }) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -81,6 +84,7 @@ const SignIn2 = ({ navigation }) => {
         >
           <Text style={styles.text}>Sign In</Text>
         </TouchableOpacity>
+        <Separator label="Or" color={Colors.White} fontSize={Sizes.Large}/>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("SignUpForm")}
