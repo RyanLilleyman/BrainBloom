@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
+import { createStackNavigator } from "@react-navigation/stack";//
+import { StatusBar } from "expo-status-bar";//
 
 import SignIn2 from "./screens/SignIn/signin2";
 import LoadingScreen from "./screens/loading/loading";
 import SignupForm from "./screens/SignUp/signup";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator();//
 
 const App = () => {
   return (

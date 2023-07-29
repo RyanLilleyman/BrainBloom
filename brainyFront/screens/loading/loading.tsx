@@ -57,7 +57,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container} testID="loading-screen">
       <Animated.View style={{ opacity: fadeAnim }} testID="animated-view">
-        <ImageBackground source={require("./mainLoading/logo6.png")} style={styles.imageBackground} testID="image-background" />
+        <ImageBackground source={require("./images/logo6.png")} style={styles.imageBackground} testID="image-background" />
       </Animated.View>
     </View>
   );
