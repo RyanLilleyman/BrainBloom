@@ -45,7 +45,7 @@ const FloatingLabelInput = ({
         paddingTop: 18,
         flexDirection: "row",
         alignItems: "center",
-        marginVertical: 10,
+        marginVertical: 5,
       }}
     >
       <Animated.Text style={labelStyle}>{label}</Animated.Text>

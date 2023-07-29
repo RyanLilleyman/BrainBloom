@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  TextInput,
   View,
   StyleSheet,
   Text,
-  ImageBackground,
   ScrollView,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -13,6 +11,7 @@ import {
 import CheckBoxNoTouch from "../../universal-components/checkboxNoTouch";
 import { Controller, useForm } from "react-hook-form"; //
 import FloatingLabelInput from "../../universal-components/FloatingLabelInput";
+import { FieldValues } from "react-hook-form";
 
 interface SignupFormProps {}
 
@@ -26,15 +25,16 @@ const SignupForm: React.FC<SignupFormProps> = () => {
   const [specialCheck, setSpecialCheck] = useState<boolean>(false);
   const [lowerCheck, setLowerCheck] = useState<boolean>(false);
   const [numberCheck, setnumberCheck] = useState<boolean>(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
-    useState<boolean>(false);
-
   const [isLoading, setisLoading] = useState<boolean>(false);
   const { control, handleSubmit } = useForm<FieldValues, any, undefined>();
+  const [securePasswordTextEntry, setSecurePasswordTextEntry] =
+    useState<boolean>(true);
+  const [secureConfirmPasswordTextEntry, setSecureConfirmPasswordTextEntry] =
+    useState<boolean>(true);
+
   const onSubmit = (data: object) => console.log(data);
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log(
       lengthCheck,
       capitalCheck,
@@ -44,7 +44,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
     );
   }, [lengthCheck, capitalCheck, specialCheck, lowerCheck, numberCheck]);
 
-  const calculatePasswordStrength = (password) => {
+  const calculatePasswordStrength = (password: string) => {
     let strengthCounter = 0;
     setCapitalCheck(false);
     setSpecialCheck(false);
@@ -76,7 +76,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
     return strengthCounter;
   };
 
-  const weakToStrong = (strength) => {
+  const weakToStrong = (strength: number) => {
     if (strength === 0) {
       console.log(strength);
       return "nothing";
@@ -99,7 +99,6 @@ const SignupForm: React.FC<SignupFormProps> = () => {
 
   const isValidEmail = (email: string) => {
     const regex = /\S+@\S+\.\S+/;
-
     return regex.test(email);
   };
 
@@ -146,15 +145,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
       flex: 1,
       justifyContent: "center",
       paddingHorizontal: 20,
-      paddingTop: 20,
       backgroundColor: "rgba(173, 227, 226, 1)",
-    },
-    input: {
-      height: 30,
-      borderColor: "gray",
-      borderWidth: 1,
-      marginBottom: 10,
-      padding: 10,
     },
     inLine: {
       display: "flex",
@@ -176,13 +167,11 @@ const SignupForm: React.FC<SignupFormProps> = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      height: "70%",
-      width: "98%",
+      paddingHorizontal: 20,
     },
     textInput: {
       flex: 1,
       height: 30,
-
       borderBottomColor: "#F5F5F5",
       borderBottomWidth: 1,
     },
@@ -190,12 +179,6 @@ const SignupForm: React.FC<SignupFormProps> = () => {
       width: 250,
       height: 90,
       display: "flex",
-    },
-    text2: {
-      color: "#F5F5F5",
-      fontSize: 18,
-      opacity: 1,
-      marginTop: 30,
     },
     inLineContainer: {
       display: "flex",
@@ -206,7 +189,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
     button: {
       width: 150,
       backgroundColor: "rgba(0, 193, 190, 0.5)",
-      marginVertical: 20,
+      marginVertical: 15,
       marginHorizontal: 10,
       borderRadius: 10,
       padding: 10,
@@ -221,6 +204,9 @@ const SignupForm: React.FC<SignupFormProps> = () => {
     text3: {
       fontSize: 16,
     },
+    checkText: {
+      color: "#F5F5F5",
+    },
   });
 
   return (
@@ -232,12 +218,12 @@ const SignupForm: React.FC<SignupFormProps> = () => {
         <View style={styles.box}>
           <Controller
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onBlur } }) => (
               <FloatingLabelInput
                 label="Email"
                 isPassword={false}
-                value={value}
-                onChangeText={onChange}
+                value={email}
+                onChangeText={setEmail}
                 onBlur={onBlur}
               />
             )}
@@ -245,79 +231,70 @@ const SignupForm: React.FC<SignupFormProps> = () => {
             rules={{ required: true }}
             defaultValue=""
           />
-          <View style={styles.inputContainer}>
-            <Text style={styles.text2}>Password...</Text>
-            <View style={styles.inLine}>
-              <TextInput
-                accessible={true}
-                accessibilityLabel="Password"
-                accessibilityHint="Enter your password"
+          <Controller
+            control={control}
+            render={({ field: { onBlur } }) => (
+              <FloatingLabelInput
+                label="Password"
+                isPassword={true}
                 value={password}
                 onChangeText={handleChange}
-                secureTextEntry={!isPasswordVisible}
-                style={styles.textInput}
+                onBlur={onBlur}
+                secureTextEntry={securePasswordTextEntry}
+                setSecureTextEntry={setSecurePasswordTextEntry}
               />
-              <TouchableOpacity
-                onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-              >
-                {isPasswordVisible ? (
-                  <Text style={styles.text3}>Hide</Text>
-                ) : (
-                  <Text style={styles.text3}>Show</Text>
-                )}
-              </TouchableOpacity>
-            </View>
-          </View>
+            )}
+            name="password"
+            rules={{ required: true }}
+            defaultValue=""
+          />
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.text2}>Confirm Password...</Text>
-            <View style={styles.inLine}>
-              <TextInput
-                accessible={true}
-                accessibilityLabel="Confirm Password"
-                accessibilityHint="Confirm your password"
+          <Controller
+            control={control}
+            render={({ field: { onBlur } }) => (
+              <FloatingLabelInput
+                label="Confirm Password"
+                isPassword={true}
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
-                secureTextEntry={!isConfirmPasswordVisible}
-                style={styles.textInput}
+                onBlur={onBlur}
+                secureTextEntry={secureConfirmPasswordTextEntry}
+                setSecureTextEntry={setSecureConfirmPasswordTextEntry}
               />
-              <TouchableOpacity
-                onPress={() =>
-                  setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
-                }
-              >
-                {isConfirmPasswordVisible ? (
-                  <Text style={styles.text3}>Hide</Text>
-                ) : (
-                  <Text style={styles.text3}>Show</Text>
-                )}
-              </TouchableOpacity>
-            </View>
-          </View>
+            )}
+            name="confirm-password"
+            rules={{ required: true }}
+            defaultValue=""
+          />
 
           {passwordStrength > 0 && (
-            <Text>Password Strength: {weakToStrong(passwordStrength)}</Text>
+            <Text style={styles.checkText}>
+              Password Strength: {weakToStrong(passwordStrength)}
+            </Text>
           )}
           <View style={styles.inLineContainer}>
             <View style={styles.inLine}>
               <CheckBoxNoTouch mT={2} mB={2} isSelected={lengthCheck} />
-              <Text> Minimum 8 Characters</Text>
+              <Text style={styles.checkText}> Minimum 8 Characters</Text>
             </View>
             <View style={styles.inLine}>
               <CheckBoxNoTouch mT={2} mB={2} isSelected={capitalCheck} />
-              <Text> Contains Capital Letter</Text>
+              <Text style={styles.checkText}> Contains Capital Letter</Text>
             </View>
             <View style={styles.inLine}>
               <CheckBoxNoTouch mT={2} mB={2} isSelected={specialCheck} />
-              <Text> Contains Special Character</Text>
+              <Text style={styles.checkText}> Contains Special Character</Text>
             </View>
             <View style={styles.inLine}>
               <CheckBoxNoTouch mT={2} mB={2} isSelected={lowerCheck} />
-              <Text> Contains Lower Case Character</Text>
+              <Text style={styles.checkText}>
+                {" "}
+                Contains Lower Case Character
+              </Text>
             </View>
             <View style={styles.inLine}>
               <CheckBoxNoTouch mT={2} mB={2} isSelected={numberCheck} />
-              <Text> Contains Number</Text>
+              <Text style={styles.checkText}> Contains Number</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.button} onPress={setSubmit}>

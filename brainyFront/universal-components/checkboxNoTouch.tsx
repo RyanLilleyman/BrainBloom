@@ -1,25 +1,40 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, ViewStyle, TextStyle } from 'react-native';
 
-export default function CheckBoxNoTouch(props) {
+interface CheckBoxNoTouchProps {
+  isSelected: boolean;
+  mB?: number;
+  mT?: number;
+  mR?: number;
+  mL?: number;
+}
+
+const CheckBoxNoTouch: React.FC<CheckBoxNoTouchProps> = (props) => {
+  const { isSelected, mB, mT, mR, mL } = props;
+
+  const containerStyle: ViewStyle = {
+    marginBottom: mB,
+    marginTop: mT,
+    marginRight: mR,
+    marginLeft: mL,
+    height: 15,
+    width: 15,
+    borderWidth: 1,
+    borderColor: '#F5F5F5',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  const textStyle: TextStyle = {
+    fontSize: 8,
+    color: '#F5F5F5',
+  };
+
   return (
-    <TouchableOpacity
-      style={{
-        marginBottom:props.mB,
-        marginTop:props.mT,
-        marginRight:props.mR,
-        marginLeft:props.mL,
-        height: 10, 
-        width: 10,
-        borderWidth: 1,
-        borderColor: '#404040',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      {props.isSelected && <Text style={{
-        fontSize: 10,
-        color: '#404040'}}>X</Text>}
+    <TouchableOpacity style={containerStyle}>
+      {isSelected && <Text style={textStyle}>&#10003;</Text>}
     </TouchableOpacity>
   );
-}
+};
+
+export default CheckBoxNoTouch;
