@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";//
 import { StatusBar } from "expo-status-bar";//
 
-import SignIn2 from "./screens/SignIn/signin2";
-import LoadingScreen from "./screens/loading/loading";
-import SignupForm from "./screens/SignUp/signup";
+import SignIn2 from "./src/signIn/signin2.view";
+import LoadingScreen from "./src/loading/loading.view";
+import SignupForm from "./src/signUp/signup.view";
 
 const Stack = createStackNavigator();//
 
