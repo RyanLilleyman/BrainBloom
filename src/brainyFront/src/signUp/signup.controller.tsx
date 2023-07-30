@@ -9,13 +9,6 @@ export interface SignUpProps {}
 
 const SignUpFormController: React.FC<SignUpProps> = () => {
   // const [isLoading, setisLoading] = useState<boolean>(false);
-  const [securePasswordTextEntry, setSecurePasswordTextEntry] =
-    useState<boolean>(true);
-  const [secureConfirmPasswordTextEntry, setSecureConfirmPasswordTextEntry] =
-    useState<boolean>(true);
-
-  // const onSubmit = (data: object) => console.log(data);
-
   const styles = StyleSheet.create({
     inLine: {
       display: "flex",
@@ -60,6 +53,12 @@ const SignUpFormController: React.FC<SignUpProps> = () => {
       color: "#F5F5F5",
     },
   });
+
+  const [securePasswordTextEntry, setSecurePasswordTextEntry] =
+    useState<boolean>(true);
+  const [secureConfirmPasswordTextEntry, setSecureConfirmPasswordTextEntry] =
+    useState<boolean>(true);
+
   const formik = useFormik({
     initialValues: { email: "", password: "", confirmPassword: "" },
     validationSchema: SignUpValidationSchema,
