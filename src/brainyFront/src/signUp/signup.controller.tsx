@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import CheckBoxNoTouch from "../components/checkboxNoTouch";
 import FloatingLabelInput from "../components/FloatingLabelInput";
 import { SignUpValidationSchema } from "./signup-validation.schema";
 import { useFormik } from "formik";
 
-export interface SignUpProps {}
 
-const SignUpFormController: React.FC<SignUpProps> = () => {
+const SignUpFormController: React.FC = () => {
   // const [isLoading, setisLoading] = useState<boolean>(false);
   const styles = StyleSheet.create({
     inLine: {
@@ -39,6 +37,7 @@ const SignUpFormController: React.FC<SignUpProps> = () => {
       backgroundColor: "rgba(0, 193, 190, 0.5)",
       marginVertical: 15,
       marginHorizontal: 10,
+      marginBottom: 25,
       borderRadius: 10,
       padding: 10,
     },
@@ -70,33 +69,41 @@ const SignUpFormController: React.FC<SignUpProps> = () => {
   return (
     <View style={styles.box}>
       <FloatingLabelInput
+        name="email"
         label="Email"
         isPassword={false}
         value={formik.values.email}
-        onChangeText={formik.handleChange}
+        onChangeText={(text: string) => formik.handleChange("email")(text)}
       />
-      {formik.errors.email && <Text>{formik.errors.email}</Text>}
+
+      {formik.errors.email && (
+        <Text style={styles.checkText}>{formik.errors.email}</Text>
+      )}
 
       <FloatingLabelInput
+        name="password"
         label="Password"
         isPassword={true}
         value={formik.values.password}
-        onChangeText={formik.handleChange}
+        onChangeText={(text: string) => formik.handleChange("password")(text)}
         secureTextEntry={securePasswordTextEntry}
         setSecureTextEntry={setSecurePasswordTextEntry}
       />
-      {formik.errors.password && <Text>{formik.errors.password}</Text>}
+      {formik.errors.password && (
+        <Text style={styles.checkText}>{formik.errors.password}</Text>
+      )}
 
       <FloatingLabelInput
+        name="confirmPassword"
         label="Confirm Password"
         isPassword={true}
         value={formik.values.confirmPassword}
-        onChangeText={formik.handleChange}
+        onChangeText={(text: string) => formik.handleChange("confirmPassword")(text)}
         secureTextEntry={secureConfirmPasswordTextEntry}
         setSecureTextEntry={setSecureConfirmPasswordTextEntry}
       />
       {formik.errors.confirmPassword && (
-        <Text>{formik.errors.confirmPassword}</Text>
+        <Text style={styles.checkText}>{formik.errors.confirmPassword}</Text>
       )}
 
       <TouchableOpacity
