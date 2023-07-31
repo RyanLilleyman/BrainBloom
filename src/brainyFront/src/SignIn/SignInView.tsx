@@ -5,7 +5,7 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import SignInFormController1 from "./signin1.controller";
+import SignInFormController1 from "./SignInController";
 
 export interface SignInProps {
   navigation: any;

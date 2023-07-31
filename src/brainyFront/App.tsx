@@ -4,11 +4,11 @@ import { createStackNavigator } from "@react-navigation/stack"; //
 import { StatusBar } from "expo-status-bar"; //
 import { PaperProvider } from "react-native-paper";
 
-import SignIn1 from "./src/signIn/signIn1.view";
+import SignIn1 from "./src/SignIn/SignInView";
 // import SignIn2 from "./src/signIn/signIn2.view";
-import LoadingScreen from "./src/loading/loading.view";
-import SignupForm from "./src/signUp/signup.view";
-import MainView from "./src/mainPage/mainpage.view";
+import LoadingScreen from "./src/Loading/LoadingView";
+import SignupForm from "./src/SignUp/SignUpView";
+import MainView from "./src/MainPage/MainPageView";
 
 const Stack = createStackNavigator(); //
 

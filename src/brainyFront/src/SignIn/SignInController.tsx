@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
-import Separator from "../components/Separator";
-import { Colors, Sizes } from "../components/Separator"; //
+import Separator from "../Components/Separator";
+import { Colors, Sizes } from "../Components/Separator"; //
 import { TextInput } from "react-native-paper";
-import { SignInValidationSchema } from "./siginin-validation.schema";
+import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
 
 export interface SignInProps {

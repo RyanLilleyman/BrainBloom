@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { SignUpValidationSchema } from "./signup-validation.schema";
+import { SignUpValidationSchema } from "./SIgnUpValidation";
 import { useFormik } from "formik";
 import { TextInput } from "react-native-paper";
 

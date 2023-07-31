@@ -1,8 +1,8 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import Attention from "../attention/attention.view";
+import Attention from "../Attention/AttentionView";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Thoughts from "../thoughts/Thoughts";
+import Thoughts from "../Thoughts/Thoughts";
 
 const MainView: React.FC = () => {
   const [index, setIndex] = React.useState(0);

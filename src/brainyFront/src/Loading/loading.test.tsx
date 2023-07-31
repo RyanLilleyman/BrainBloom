@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { Animated } from 'react-native';
-import LoadingScreen, { LoadingScreenProps } from './loading.view';
+import LoadingScreen, { LoadingScreenProps } from './LoadingView';
 
 jest.mock('react-native/Libraries/Animated/src/Animated', () => {
   const ActualAnimated = jest.requireActual('react-native/Libraries/Animated/src/Animated');

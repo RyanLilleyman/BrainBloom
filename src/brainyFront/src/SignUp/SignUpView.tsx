@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import SignUpFormController from "./signup.controller";
+import SignUpFormController from "./SignUpController";
 
 interface SignupFormProps {}
 
