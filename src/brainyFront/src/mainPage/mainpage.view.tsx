@@ -24,7 +24,13 @@ const MainView: React.FC = () => {
       {renderScene()}
 
       {/* Bottom navigation bar */}
-      <View style={{ flexDirection: "row", backgroundColor: "#034d59", height: 110 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          backgroundColor: "#034d59",
+          height: 110,
+        }}
+      >
         <TouchableOpacity
           style={{
             flex: 1,
@@ -39,7 +45,9 @@ const MainView: React.FC = () => {
             size={24}
             color={index === 0 ? "#FFFFFF" : "#B0C4DE"}
           />
-          <Text style={{ color: index === 0 ? "#FFFFFF" : "#B0C4DE" }}>Thoughts</Text>
+          <Text style={{ color: index === 0 ? "#FFFFFF" : "#B0C4DE" }}>
+            Thoughts
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -55,7 +63,9 @@ const MainView: React.FC = () => {
             size={24}
             color={index === 1 ? "#FFFFFF" : "#B0C4DE"}
           />
-          <Text style={{ color: index === 1 ? "#FFFFFF" : "#B0C4DE" }}>Attention</Text>
+          <Text style={{ color: index === 1 ? "#FFFFFF" : "#B0C4DE" }}>
+            Attention
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

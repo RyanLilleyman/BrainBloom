@@ -8,7 +8,7 @@ import {
   Keyboard,
   TouchableOpacity,
 } from "react-native";
-import { FAB, Searchbar, useTheme } from "react-native-paper";
+import { FAB, Searchbar } from "react-native-paper";
 import EntryListView from "./EntryListView";
 import EntryForm from "./EntryForm";
 
@@ -17,7 +17,6 @@ const ThoughtsView = () => {
   const [entries, setEntries] = useState([]);
   const [open, setOpen] = useState(false);
   const formOpacity = useState(new Animated.Value(0))[0];
-  const theme = useTheme(); 
 
   const handleFabPress = () => {
     setOpen(!open);
@@ -51,12 +50,16 @@ const ThoughtsView = () => {
           />
         </ScrollView>
         {open && (
-          <EntryForm
-            formOpacity={formOpacity}
-            entries={entries}
-            setEntries={setEntries}
-            handleFabPress={handleFabPress}
-          />
+          <Animated.View
+            style={[styles.entryFormContainer, { opacity: formOpacity }]}
+          >
+            <EntryForm
+              formOpacity={formOpacity}
+              entries={entries}
+              setEntries={setEntries}
+              handleFabPress={handleFabPress}
+            />
+          </Animated.View>
         )}
         <TouchableOpacity
           activeOpacity={0.7}
@@ -66,7 +69,8 @@ const ThoughtsView = () => {
           <FAB
             icon={open ? "close" : "plus"}
             onPress={handleFabPress}
-            style={[styles.fab, { backgroundColor: "white" }]} 
+            style={styles.fab}
+            color="black" // Set the plus icon color to black
           />
         </TouchableOpacity>
       </View>
@@ -103,11 +107,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 16,
     bottom: 16,
-    borderRadius: 28, 
+    backgroundColor: "white", // Set the FAB background color to white
+    borderRadius: 28,
     overflow: "hidden",
   },
   fab: {
-
+    backgroundColor: "white", // Set the FAB color to white
+  },
+  entryFormContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

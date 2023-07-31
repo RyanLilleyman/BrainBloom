@@ -1,15 +1,15 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
-  Button,
   Animated,
   StyleSheet,
-  TextInput as NativeTextInput,
-  KeyboardAvoidingView,
-  Platform,
   Keyboard,
+  Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
-import { TextInput } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 
 const EntryForm = ({
   open,
@@ -18,9 +18,30 @@ const EntryForm = ({
   setEntries,
   handleFabPress,
 }) => {
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const descriptionInputRef = useRef();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [formWidth, setFormWidth] = useState(
+    Dimensions.get("window").width * 0.9
+  );
+
+  useEffect(() => {
+    const updateFormWidth = () => {
+      const newWidth = Dimensions.get("window").width * 0.9;
+      setFormWidth(newWidth);
+    };
+
+    const updateFormWidthDelayed = () => setTimeout(updateFormWidth, 100); // Delay the update to avoid inconsistent values
+
+    const dimensionsListener = Dimensions.addEventListener(
+      "change",
+      updateFormWidthDelayed
+    );
+
+    return () => {
+      clearTimeout(updateFormWidthDelayed());
+      dimensionsListener.remove();
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!open) {
@@ -41,41 +62,57 @@ const EntryForm = ({
       behavior={Platform.OS === "ios" ? "padding" : null}
       style={styles.keyboardAvoidingView}
     >
-      <Animated.View style={[styles.formContainer, { opacity: formOpacity }]}>
-        <NativeTextInput
-          style={styles.hiddenInput}
-          onFocus={() => Keyboard.dismiss()} // Prevent the keyboard from opening when clicking outside
-        />
-        <TextInput
-          mode="outlined"
-          label="Title"
-          value={title}
-          onChangeText={setTitle}
-        />
-        <TextInput
-          ref={descriptionInputRef}
-          mode="outlined"
-          label="Description"
-          value={description}
-          onChangeText={setDescription}
-          multiline
-        />
-        <View style={styles.buttonContainer}>
-          <Button title="Save" onPress={onSave} />
-          <Button title="Close" onPress={handleFabPress} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <View style={[styles.formContainer, { width: formWidth }]}>
+            <Animated.View style={{ opacity: formOpacity }}>
+              <TextInput
+                mode="outlined"
+                label="Title"
+                value={title}
+                onChangeText={setTitle}
+                style={styles.input}
+              />
+              <TextInput
+                mode="outlined"
+                label="Description"
+                value={description}
+                onChangeText={setDescription}
+                multiline
+                style={styles.input}
+              />
+              <View style={styles.buttonContainer}>
+                <Button
+                  mode="contained"
+                  onPress={onSave}
+                  style={styles.saveButton}
+                  labelStyle={styles.buttonLabel}
+                >
+                  Save
+                </Button>
+                <Button
+                  mode="contained"
+                  onPress={handleFabPress}
+                  style={styles.closeButton}
+                  labelStyle={styles.buttonLabel}
+                >
+                  Close
+                </Button>
+              </View>
+            </Animated.View>
+          </View>
         </View>
-      </Animated.View>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   keyboardAvoidingView: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 1,
+  },
+  container: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -83,15 +120,31 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 5,
     padding: 20,
-    width: "90%",
+    marginBottom: 50, // Add spacing between the form and the keyboard
+  },
+  input: {
+    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 20,
   },
-  hiddenInput: {
-    height: 0,
-    opacity: 0,
+  saveButton: {
+    flex: 1,
+    marginRight: 5,
+    backgroundColor: "rgba(173, 227, 226, 1)",
+    elevation: 0,
+  },
+  closeButton: {
+    flex: 1,
+    marginLeft: 5,
+    backgroundColor: "rgba(173, 227, 226, 1)",
+    elevation: 0,
+  },
+  buttonLabel: {
+    fontWeight: "bold",
+    color: "white",
   },
 });
 
