@@ -32,13 +32,13 @@ export const SignInFormController1: React.FC<SignInProps> = ({
   });
   const styles = StyleSheet.create({
     box: {
-      backgroundColor: "rgba(2, 60, 73, 1)", //rgba(2, 60, 73, 1),rgba(0, 193, 190, 0.5),rgba(173, 227, 226, 1)
+      backgroundColor: "rgba(113,167,166,1)", //rgba(2, 60, 73, 1),rgba(0, 193, 190, 0.5),rgba(173, 227, 226, 1)
       alignItems: "center",
       padding: 20,
       borderRadius: 10,
     },
     button: {
-      backgroundColor: "rgba(0, 193, 190, 0.5)", //#03363D
+      backgroundColor: "rgba(53,137,136,1)", //#03363D
       width: 200,
       padding: 10,
       margin: 10,
@@ -46,7 +46,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     },
     text: { color: "#F5F5F5", fontSize: 22, textAlign: "center" },
     inputContainerStyle: {
-      backgroundColor: "rgba(2, 60, 73, 1)",
+      backgroundColor: "rgba(153,193,192,1)",
       color: "#F5F5F5",
       width: 250,
       margin: 8,

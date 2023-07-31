@@ -17,7 +17,7 @@ const SignUpFormController: React.FC = () => {
       resizeMode: "cover",
       borderRadius: 10,
       overflow: "hidden",
-      backgroundColor: "rgba(2, 60, 73, 1)",
+      backgroundColor: "rgba(113,167,166,1)",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -33,7 +33,7 @@ const SignUpFormController: React.FC = () => {
     },
     button: {
       width: 150,
-      backgroundColor: "rgba(0, 193, 190, 0.5)",
+      backgroundColor: "rgba(53,137,136,1)",
       marginVertical: 15,
       marginHorizontal: 10,
       marginBottom: 25,
@@ -51,7 +51,7 @@ const SignUpFormController: React.FC = () => {
       color: "#F5F5F5",
     },
     inputContainerStyle: {
-      backgroundColor: "rgba(2, 60, 73, 1)",
+      backgroundColor: "rgba(153,193,192,1)",
       color: "#F5F5F5",
       width: 250,
       margin: 8,

@@ -24,7 +24,7 @@ const styles = StyleSheet.create<Styles>({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(244, 246, 243, 1)',
+    backgroundColor: 'rgba(173, 227, 226, 1)',
   },
   imageBackground: {
     width: 400,

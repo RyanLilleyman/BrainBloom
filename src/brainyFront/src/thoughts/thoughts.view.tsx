@@ -16,7 +16,7 @@ const Thoughts = () => {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "#f2f2f2",
+      backgroundColor: "rgba(173, 227, 226, 1)",
     },
     text: {
       fontSize: 24,
