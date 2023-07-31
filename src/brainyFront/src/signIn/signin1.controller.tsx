@@ -10,13 +10,26 @@ export interface SignInProps {
   navigation: any;
 }
 
+/**
+ * Renders a sign-in form component.
+ *
+ * @param {React.FC<SignInProps>} SignInProps - The props for the sign-in form
+ * @returns {React.ReactNode} The rendered sign-in form component
+ */
 export const SignInFormController1: React.FC<SignInProps> = ({
   navigation,
 }) => {
   const [securePasswordTextEntry, setPasswordTextEntry] =
     useState<boolean>(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    validationSchema: SignInValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      // Handle form submission here
+      
+    },
+  });
   const styles = StyleSheet.create({
     box: {
       backgroundColor: "rgba(2, 60, 73, 1)", //rgba(2, 60, 73, 1),rgba(0, 193, 190, 0.5),rgba(173, 227, 226, 1)
@@ -45,18 +58,25 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     },
     fontSize: {
       fontSize: 18,
+      textAlign: "auto",
       color: "#F5F5F5",
       background: "white",
     },
+    checkText: {
+      color: "#F5F5F5",
+    },
   });
+  //()=>formik.handleSubmit(undefined), also switch from navigate to replace
   return (
     <View style={styles.box}>
       <TextInput
         mode="outlined"
         style={[styles.inputContainerStyle, styles.fontSize]}
         label="Email..."
-        value={email}
-        onChangeText={setEmail}
+        value={formik.values.email}
+        onChangeText={(text) => {
+          formik.setFieldValue("email", text);
+        }}
         activeOutlineColor="white"
         placeholderTextColor="white"
         outlineColor="white"
@@ -68,18 +88,24 @@ export const SignInFormController1: React.FC<SignInProps> = ({
           },
         }}
       />
+      {formik.errors.email && (
+        <Text style={styles.checkText}>{formik.errors.email}</Text>
+      )}
       <TextInput
         mode="outlined"
         style={[styles.inputContainerStyle, styles.fontSize]}
         label="Password..."
-        value={password}
-        onChangeText={setPassword}
+        value={formik.values.password}
+        onChangeText={(text) => {
+          formik.setFieldValue("password", text);
+        }}
         secureTextEntry={securePasswordTextEntry}
         activeOutlineColor="white"
         placeholderTextColor="white"
         outlineColor="white"
         textColor="white"
         selectionColor="white"
+        multiline={true}
         right={
           <TextInput.Icon
             icon={securePasswordTextEntry ? "eye" : "eye-off"}
@@ -93,7 +119,10 @@ export const SignInFormController1: React.FC<SignInProps> = ({
           },
         }}
       />
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+      {formik.errors.password && (
+        <Text style={styles.checkText}>{formik.errors.password}</Text>
+      )}
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("MainView")}>
         <Text style={styles.text}>Sign In</Text>
       </TouchableOpacity>
       <Separator label="Or" color={Colors.White} fontSize={Sizes.Large} />
