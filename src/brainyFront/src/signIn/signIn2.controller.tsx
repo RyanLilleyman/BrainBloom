@@ -10,7 +10,7 @@ export interface SignInProps {
   navigation: any;
 }
 
-const SignInFormController: React.FC<SignInProps> = ({ navigation }) => {
+const SignInFormController2: React.FC<SignInProps> = ({ navigation }) => {
   const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true);
   const { control, handleSubmit } = useForm<FieldValues, any, undefined>();
   const onSubmit = (data: object) => console.log(data);
@@ -22,7 +22,7 @@ const SignInFormController: React.FC<SignInProps> = ({ navigation }) => {
       borderRadius: 10,
     },
     button: {
-      backgroundColor: "rgba(0, 193, 190, 0.5)", //#03363D
+      backgroundColor: "rgba(0, 193, 190, 0.5)", //#03363D,rgba(2, 60, 73, 1)
       width: 200,
       padding: 10,
       margin: 20,
@@ -78,4 +78,4 @@ const SignInFormController: React.FC<SignInProps> = ({ navigation }) => {
   );
 };
 
-export default SignInFormController;
+export default SignInFormController2;

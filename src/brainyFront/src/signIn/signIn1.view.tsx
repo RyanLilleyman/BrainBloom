@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   StyleSheet,
@@ -5,16 +6,16 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import SignInFormController2 from "./signIn2.controller";
+import SignInFormController1 from "./signin1.controller";
 
 export interface SignInProps {
   navigation: any;
 }
-const SignIn2: React.FC<SignInProps> = ({ navigation }) => {
+const SignIn1: React.FC<SignInProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "rgba(173, 227, 226, 1)", //rgba(244, 246, 243, 1),rgba(2, 60, 73, 1)
+      backgroundColor: "rgba(2, 60, 73, 1)", //rgba(244, 246, 243, 1),rgba(2, 60, 73, 1),
       justifyContent: "center",
       paddingHorizontal: 20,
     },
@@ -34,11 +35,11 @@ const SignIn2: React.FC<SignInProps> = ({ navigation }) => {
         <ScrollView
           contentContainerStyle={styles.scrollViewContent}
         >
-          <SignInFormController2 navigation={navigation} />
+          <SignInFormController1 navigation={navigation} />
         </ScrollView>
       </KeyboardAvoidingView>
     </>
   );
 };
 
-export default SignIn2;
+export default SignIn1;

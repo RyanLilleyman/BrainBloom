@@ -48,7 +48,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
           duration: 1000,
           useNativeDriver: true,
         }).start(() => {
-          navigation.replace('SignIn2');
+          navigation.replace('SignIn1');
         });
       }, 2000); 
     });
