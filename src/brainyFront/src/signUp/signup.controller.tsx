@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import FloatingLabelInput from "../components/FloatingLabelInput";
 import { SignUpValidationSchema } from "./signup-validation.schema";
 import { useFormik } from "formik";
-
+import { TextInput } from "react-native-paper";
 
 const SignUpFormController: React.FC = () => {
   // const [isLoading, setisLoading] = useState<boolean>(false);
@@ -14,7 +13,6 @@ const SignUpFormController: React.FC = () => {
       justifyContent: "center",
       alignItems: "center",
     },
-
     box: {
       resizeMode: "cover",
       borderRadius: 10,
@@ -24,6 +22,7 @@ const SignUpFormController: React.FC = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
+      paddingTop: 20,
       paddingHorizontal: 20,
     },
     inLineContainer: {
@@ -51,6 +50,22 @@ const SignUpFormController: React.FC = () => {
     checkText: {
       color: "#F5F5F5",
     },
+    inputContainerStyle: {
+      backgroundColor: "rgba(2, 60, 73, 1)",
+      color: "#F5F5F5",
+      width: 250,
+      margin: 8,
+    },
+    noPaddingInput: {
+      backgroundColor: "transparent",
+      paddingHorizontal: 0,
+      background: "white",
+    },
+    fontSize: {
+      fontSize: 18,
+      color: "#F5F5F5",
+      background: "white",
+    },
   });
 
   const [securePasswordTextEntry, setSecurePasswordTextEntry] =
@@ -68,39 +83,83 @@ const SignUpFormController: React.FC = () => {
   });
   return (
     <View style={styles.box}>
-      <FloatingLabelInput
-        name="email"
-        label="Email"
-        isPassword={false}
+      <TextInput
+        mode="outlined"
+        style={[styles.inputContainerStyle, styles.fontSize]}
+        label="Email..."
         value={formik.values.email}
         onChangeText={(text: string) => formik.handleChange("email")(text)}
+        activeOutlineColor="white"
+        placeholderTextColor="white"
+        outlineColor="white"
+        textColor="white"
+        selectionColor="white"
+        theme={{
+          colors: {
+            onSurfaceVariant: "white",
+          },
+        }}
       />
 
       {formik.errors.email && (
         <Text style={styles.checkText}>{formik.errors.email}</Text>
       )}
-
-      <FloatingLabelInput
-        name="password"
-        label="Password"
-        isPassword={true}
+      <TextInput
+        mode="outlined"
+        style={[styles.inputContainerStyle, styles.fontSize]}
+        label="Password..."
         value={formik.values.password}
         onChangeText={(text: string) => formik.handleChange("password")(text)}
         secureTextEntry={securePasswordTextEntry}
-        setSecureTextEntry={setSecurePasswordTextEntry}
+        activeOutlineColor="white"
+        placeholderTextColor="white"
+        outlineColor="white"
+        textColor="white"
+        selectionColor="white"
+        right={
+          <TextInput.Icon
+            icon={securePasswordTextEntry ? "eye" : "eye-off"}
+            color="white"
+            onPress={() =>
+              setSecureConfirmPasswordTextEntry(!secureConfirmPasswordTextEntry)
+            }
+          />
+        }
+        theme={{
+          colors: {
+            onSurfaceVariant: "white",
+          },
+        }}
       />
       {formik.errors.password && (
         <Text style={styles.checkText}>{formik.errors.password}</Text>
       )}
-
-      <FloatingLabelInput
-        name="confirmPassword"
-        label="Confirm Password"
-        isPassword={true}
+      <TextInput
+        mode="outlined"
+        style={[styles.inputContainerStyle, styles.fontSize]}
+        label="Confirm Password..."
         value={formik.values.confirmPassword}
-        onChangeText={(text: string) => formik.handleChange("confirmPassword")(text)}
+        onChangeText={(text: string) =>
+          formik.handleChange("confirmPassword")(text)
+        }
         secureTextEntry={secureConfirmPasswordTextEntry}
-        setSecureTextEntry={setSecureConfirmPasswordTextEntry}
+        activeOutlineColor="white"
+        placeholderTextColor="white"
+        outlineColor="white"
+        textColor="white"
+        selectionColor="white"
+        right={
+          <TextInput.Icon
+            icon={securePasswordTextEntry ? "eye" : "eye-off"}
+            color="white"
+            onPress={() => setSecurePasswordTextEntry(!securePasswordTextEntry)}
+          />
+        }
+        theme={{
+          colors: {
+            onSurfaceVariant: "white",
+          },
+        }}
       />
       {formik.errors.confirmPassword && (
         <Text style={styles.checkText}>{formik.errors.confirmPassword}</Text>

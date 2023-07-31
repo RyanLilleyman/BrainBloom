@@ -15,7 +15,7 @@ const SignIn1: React.FC<SignInProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "rgba(2, 60, 73, 1)", //rgba(244, 246, 243, 1),rgba(2, 60, 73, 1),
+      backgroundColor: "rgba(173, 227, 226, 1)", //rgba(244, 246, 243, 1),rgba(2, 60, 73, 1),
       justifyContent: "center",
       paddingHorizontal: 20,
     },
