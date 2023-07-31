@@ -1,15 +1,13 @@
-# BrainBloom: An Interactive Metacognitive Therapy App
+# BrainBloom: An Interactive Journaling Application
 
-BrainBloom is an app that brings metacognitive therapy right to your fingertips. Our goal is to help users understand and reshape their thought patterns, creating a healthier, happier mind.
+BrainBloom is a humble application meant to be a braindump for your thoughts. It also provides some custom ATT as well.
 
 ![BrainBloom Logo](https://github.com/RyanLilleyman/BrainBloom/blob/main/banner.gif)
 
 ##  Future Features
 
 - Interactive thought records: Record and analyze your thoughts with interactive exercises
-- Daily emotion tracking: Track your emotions and understand your patterns over time
-- Guided metacognitive meditation sessions: Follow guided sessions to help reframe your thoughts
-- Personalized metacognitive journey: Based on your inputs, the app creates a journey personalized to your needs
+- Attentional Training Technique
 - Secure user accounts: Sign up and log in to track your progress
 
 ## Getting Started
