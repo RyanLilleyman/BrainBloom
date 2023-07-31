@@ -30,7 +30,7 @@ const EntryForm = ({
       setFormWidth(newWidth);
     };
 
-    const updateFormWidthDelayed = () => setTimeout(updateFormWidth, 100); // Delay the update to avoid inconsistent values
+    const updateFormWidthDelayed = () => setTimeout(updateFormWidth, 100);
 
     const dimensionsListener = Dimensions.addEventListener(
       "change",
@@ -50,7 +50,6 @@ const EntryForm = ({
   }, [open]);
 
   const onSave = () => {
-    // Create a date object with the current date and time
     const date = new Date();
     setEntries([...entries, { title, description, date }]);
     setTitle("");
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 5,
     padding: 20,
-    marginBottom: 50, // Add spacing between the form and the keyboard
+    marginBottom: 50, 
   },
   input: {
     marginBottom: 10,

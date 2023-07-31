@@ -20,10 +20,7 @@ const MainView: React.FC = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      {/* Render the current scene */}
       {renderScene()}
-
-      {/* Bottom navigation bar */}
       <View
         style={{
           flexDirection: "row",

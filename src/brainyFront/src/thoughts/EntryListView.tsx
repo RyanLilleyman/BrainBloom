@@ -5,8 +5,6 @@ const EntryListView = ({ entries, searchQuery, setEntries }) => {
   const onDelete = (index) => {
     setEntries(entries.filter((_, idx) => idx !== index));
   };
-
-  // Filtering the entries based on the search query
   const filteredEntries = entries.filter((entry) => {
     return entry.title.toLowerCase().includes(searchQuery.toLowerCase());
   });
@@ -24,7 +22,6 @@ const EntryListView = ({ entries, searchQuery, setEntries }) => {
             <View style={styles.titleContainer}>
               <Text style={styles.title}>{entry.title}</Text>
             </View>
-            {/* Display the date and time in a readable format */}
             <Text style={styles.date}>{entry.date.toLocaleString()}</Text>
             <Text style={styles.description}>{entry.description}</Text>
             <Button title="Delete" onPress={() => onDelete(index)} />

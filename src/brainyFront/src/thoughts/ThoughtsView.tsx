@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 16,
     bottom: 16,
-    backgroundColor: "white", // Set the FAB background color to white
+    backgroundColor: "white", 
     borderRadius: 28,
     overflow: "hidden",
   },
   fab: {
-    backgroundColor: "white", // Set the FAB color to white
+    backgroundColor: "white", 
   },
   entryFormContainer: {
     ...StyleSheet.absoluteFillObject,
