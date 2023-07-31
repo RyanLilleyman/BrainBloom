@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Dimensions} from "react-native";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
 
 /**
  * Renders a component that displays an attention message.
- * 
+ *
  * @return {ReactElement} The rendered Attention component.
  */
 const Attention: React.FC = () => {
@@ -29,14 +29,10 @@ const Attention: React.FC = () => {
     },
   });
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Attention</Text>
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <Text style={styles.text}>Attention</Text>
+    </View>
   );
 };
-
-
 
 export default Attention;

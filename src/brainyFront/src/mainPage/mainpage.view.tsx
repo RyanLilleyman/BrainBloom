@@ -1,46 +1,64 @@
 import * as React from "react";
-import { BottomNavigation } from "react-native-paper";
-import Thoughts from "../thoughts/thoughts.view";
+import { View, Text, TouchableOpacity } from "react-native";
 import Attention from "../attention/attention.view";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Thoughts from "../thoughts/Thoughts";
 
-const routes = [
-  {
-    key: "thoughts",
-    title: "Thoughts",
-    unfocusedIcon: "lightbulb-off",
-    focusedIcon: "lightbulb",
-    icon: "lightbulb",
-  },
-  {
-    key: "attention",
-    title: "Attention",
-    unfocusedIcon: "alert-circle",
-    focusedIcon: "alert-circle-outline",
-  },
-];
-
-const renderScene = BottomNavigation.SceneMap({
-  thoughts: Thoughts,
-  attention: Attention,
-});
-
-/**
- * Renders the main view component.
- *
- * @return {React.FC} The main view component.
- */
 const MainView: React.FC = () => {
   const [index, setIndex] = React.useState(0);
 
+  const renderScene = () => {
+    switch (index) {
+      case 0:
+        return <Thoughts />;
+      case 1:
+        return <Attention />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      barStyle={{ backgroundColor: "rgba(113,167,166,1)", paddingTop:10, height:110 }}
-      inactiveColor="rgba(2, 60, 73, 1)"
-      shifting={true}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <View style={{ flex: 1 }}>
+      {/* Render the current scene */}
+      {renderScene()}
+
+      {/* Bottom navigation bar */}
+      <View style={{ flexDirection: "row", backgroundColor: "#034d59", height: 110 }}>
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            backgroundColor: index === 0 ? "#027373" : "#034d59",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onPress={() => setIndex(0)}
+        >
+          <MaterialCommunityIcons
+            name={index === 0 ? "lightbulb-on" : "lightbulb-off"}
+            size={24}
+            color={index === 0 ? "#FFFFFF" : "#B0C4DE"}
+          />
+          <Text style={{ color: index === 0 ? "#FFFFFF" : "#B0C4DE" }}>Thoughts</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            backgroundColor: index === 1 ? "#027373" : "#034d59",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onPress={() => setIndex(1)}
+        >
+          <MaterialCommunityIcons
+            name={index === 1 ? "alert-circle-outline" : "alert-circle"}
+            size={24}
+            color={index === 1 ? "#FFFFFF" : "#B0C4DE"}
+          />
+          <Text style={{ color: index === 1 ? "#FFFFFF" : "#B0C4DE" }}>Attention</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
