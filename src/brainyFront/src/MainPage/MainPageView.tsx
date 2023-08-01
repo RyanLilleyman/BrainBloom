@@ -1,23 +1,33 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Attention from "../Attention/AttentionView";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Thoughts from "../Thoughts/Thoughts";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const MainView: React.FC = () => {
+const MainView = () => {
   const [index, setIndex] = React.useState(0);
+  const [resetAttention, setResetAttention] = React.useState(null);
+
+  const onReset = (resetFunction) => {
+    setResetAttention(() => resetFunction);
+  };
+
+  React.useEffect(() => {
+    if (index !== 1 && resetAttention) {
+      resetAttention();
+    }
+  }, [index, resetAttention]);
 
   const renderScene = () => {
     switch (index) {
       case 0:
         return <Thoughts />;
       case 1:
-        return <Attention />;
+        return <Attention onReset={onReset} />;
       default:
         return null;
     }
   };
-
   return (
     <View style={{ flex: 1 }}>
       {renderScene()}

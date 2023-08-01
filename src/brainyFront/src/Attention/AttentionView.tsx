@@ -1,24 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { Audio } from "expo-av";
 import { FAB } from "react-native-paper";
 
-const tracks = [
-  { id: "1", title: "Track 1", url: "URL_TO_TRACK_1" },
-  { id: "2", title: "Track 2", url: "URL_TO_TRACK_2" },
-  { id: "3", title: "Track 3", url: "URL_TO_TRACK_3" },
-  { id: "4", title: "Track 4", url: "URL_TO_TRACK_4" },
-];
+const Attention = ({ onReset }) => {
+  const tracks = [
+    { id: "1", title: "Track 1", url: require('../Audio/aud1.mp3') },
+    { id: "2", title: "Track 2", url: require('../Audio/aud2.mp3') },
+    { id: "3", title: "Track 3", url: require('../Audio/aud3.mp3') },
+    { id: "4", title: "Track 4", url: require('../Audio/aud4.mp3') },
+  ];
 
-const Attention: React.FC = () => {
-  const { width, height } = Dimensions.get("window");
   const [currentTrack, setCurrentTrack] = useState(null);
   const [soundObject, setSoundObject] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
+    onReset(resetPlayer);
+  }, [onReset]);
+
+  const resetPlayer = async () => {
+    console.log('resetPlayer called, isVisible:', isVisible);
+    try {
+      if (soundObject) {
+        console.log('Stopping and unloading sound object');
+        await soundObject.stopAsync();
+        await soundObject.unloadAsync();
+        setSoundObject(null);
+      }
+      setIsPlaying(false);
+      setCurrentTrack(null);
+    } catch (error) {
+      console.error("Error resetting player:", error.message);
+    }
+  };
+  
+  
+
+  useEffect(() => {
     return () => {
-      // Clean up resources when the component unmounts
       if (soundObject) {
         soundObject.unloadAsync();
       }
@@ -27,23 +47,33 @@ const Attention: React.FC = () => {
 
   const playTrack = async (trackUrl) => {
     try {
-      // Stop the currently playing track, if any
+      // If there is a current track playing, stop and unload it
       if (soundObject) {
         await soundObject.stopAsync();
+        await soundObject.unloadAsync();
       }
-
-      // Load and play the selected track
+  
+      // Create a new Sound object
       const newSoundObject = new Audio.Sound();
-      await newSoundObject.loadAsync({ uri: trackUrl });
+      
+      // Set up a listener to update the isPlaying state when playback status changes
+      newSoundObject.setOnPlaybackStatusUpdate((status) => {
+        setIsPlaying(status.isPlaying);
+      });
+  
+      // Load the new track URL
+      await newSoundObject.loadAsync(trackUrl);
+  
+      // Play the new track
       await newSoundObject.playAsync();
+  
+      // Update state with the new Sound object and track URL
       setSoundObject(newSoundObject);
       setCurrentTrack(trackUrl);
-      setIsPlaying(true);
     } catch (error) {
       console.error("Error playing track:", error.message);
     }
   };
-
   const pauseTrack = async () => {
     try {
       if (soundObject) {
@@ -58,7 +88,6 @@ const Attention: React.FC = () => {
   const resetTrack = async () => {
     try {
       if (soundObject) {
-        await soundObject.stopAsync();
         await soundObject.unloadAsync();
         setIsPlaying(false);
         setCurrentTrack(null);
@@ -69,14 +98,27 @@ const Attention: React.FC = () => {
     }
   };
 
+  const resetEverything = async () => {
+    try {
+      if (soundObject) {
+        await soundObject.unloadAsync();
+        setIsPlaying(false);
+        setCurrentTrack(null);
+        setSoundObject(null);
+      }
+    } catch (error) {
+      console.error("Error resetting everything:", error.message);
+    }
+  };
+
   return (
-    <ScrollView
-      contentContainerStyle={styles.scrollViewContent}
-      style={styles.container}
-    >
+    <ScrollView contentContainerStyle={styles.scrollViewContent} style={styles.container}>
       {tracks.map((track) => (
         <View key={track.id} style={styles.tab}>
-          <Text onPress={() => playTrack(track.url)} style={styles.tabText}>
+          <Text
+            onPress={() => playTrack(track.url)}
+            style={[styles.tabText, isPlaying ? styles.disabledTabText : {}]}
+          >
             {track.title}
           </Text>
         </View>
@@ -86,26 +128,12 @@ const Attention: React.FC = () => {
           <Text style={styles.currentTrackText}>{currentTrack}</Text>
           <View style={styles.buttonsContainer}>
             {isPlaying ? (
-              <FAB
-                icon="pause"
-                onPress={pauseTrack}
-                style={styles.pauseButton}
-                color="white"
-              />
+              <FAB icon="pause" onPress={pauseTrack} style={styles.pauseButton} color="black" />
             ) : (
-              <FAB
-                icon="play"
-                onPress={() => playTrack(currentTrack)}
-                style={styles.playButton}
-                color="white"
-              />
+              <FAB icon="play" onPress={() => playTrack(currentTrack)} style={styles.playButton} color="white" />
             )}
-            <FAB
-              icon="stop"
-              onPress={resetTrack}
-              style={styles.stopButton}
-              color="white"
-            />
+            <FAB icon="stop" onPress={resetTrack} style={styles.stopButton} color="white" />
+            <FAB icon="refresh" onPress={resetEverything} style={styles.resetButton} color="white" />
           </View>
         </View>
       )}
@@ -134,6 +162,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#333",
   },
+  disabledTabText: {
+    color: "#aaa",
+  },
   controlsContainer: {
     width: "100%",
     paddingVertical: 20,
@@ -144,7 +175,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 10,
-    color: "white",
+    color: "#333",
   },
   buttonsContainer: {
     flexDirection: "row",
@@ -152,15 +183,35 @@ const styles = StyleSheet.create({
   },
   playButton: {
     marginHorizontal: 20,
-    backgroundColor: "transparent",
+    backgroundColor: "green",
+    height: 70,
+    width: 70,
+    alignItems: "center",
+    justifyContent: "center",
   },
   pauseButton: {
     marginHorizontal: 20,
-    backgroundColor: "transparent",
+    backgroundColor: "yellow",
+    height: 70,
+    width: 70,
+    alignItems: "center",
+    justifyContent: "center",
   },
   stopButton: {
     marginHorizontal: 20,
-    backgroundColor: "transparent",
+    backgroundColor: "red",
+    height: 70,
+    width: 70,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  resetButton: {
+    marginHorizontal: 20,
+    backgroundColor: "blue",
+    height: 70,
+    width: 70,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
