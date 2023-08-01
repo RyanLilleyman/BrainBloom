@@ -1,13 +1,13 @@
 # BrainBloom: An Interactive Journaling Application
 
-BrainBloom is a humble application meant to be a braindump for your thoughts. It also provides some custom ATT as well.
+BrainBloom is a humble application meant to be a braindump for your thoughts. It also provides some ATT as well.
 
 ![BrainBloom Logo](https://github.com/RyanLilleyman/BrainBloom/blob/main/banner.gif)
 
 ##  Future Features
 
-- Interactive thought records: Record and analyze your thoughts with interactive exercises
-- Attentional Training Technique
+- Interactive thought records: Record and analyze your thoughts.
+- Attentional Training Technique.
 - Secure user accounts: Sign up and log in to track your progress
 
 ## Getting Started
