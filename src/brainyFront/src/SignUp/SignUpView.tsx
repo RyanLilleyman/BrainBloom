@@ -7,9 +7,11 @@ import {
 } from "react-native";
 import SignUpFormController from "./SignUpController";
 
-interface SignupFormProps {}
+interface SignupFormProps {
+  navigation: any;
+}
 
-const SignUp: React.FC<SignupFormProps> = () => {
+const SignUp: React.FC<SignupFormProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -30,7 +32,7 @@ const SignUp: React.FC<SignupFormProps> = () => {
       style={styles.container}
     >
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <SignUpFormController />
+        <SignUpFormController navigation={navigation} />
       </ScrollView>
     </KeyboardAvoidingView>
   );

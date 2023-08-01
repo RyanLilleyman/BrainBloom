@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack"; //
 import { StatusBar } from "expo-status-bar"; //
 import { PaperProvider } from "react-native-paper";
 
 import SignIn1 from "./src/SignIn/SignInView";
-import LoadingScreen from "./src/Loading/LoadingView";
+import LoadingScreen from "./src/Loading/LoadingLogoView";
 import SignupForm from "./src/SignUp/SignUpView";
 import MainView from "./src/MainPage/MainPageView";
 
 const Stack = createStackNavigator(); //
-
 /**
  * Renders the main application component.
  *

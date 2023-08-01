@@ -181,7 +181,7 @@ const SignUpFormController: React.FC = ({ navigation }) => {
       <Separator label="or" color={Colors.White} fontSize={Sizes.Large} />
       <TouchableOpacity
         style={styles.button}
-        onPress={() => formik.handleSubmit(undefined)}
+        onPress={() => navigation.navigate("SignIn1")}
       >
         <Text style={styles.text4}>Back</Text>
       </TouchableOpacity>
