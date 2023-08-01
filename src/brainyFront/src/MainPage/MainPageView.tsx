@@ -23,7 +23,7 @@ const MainView = () => {
       case 0:
         return <Thoughts />;
       case 1:
-        return <Attention onReset={onReset} />;
+        return <Attention />;
       default:
         return null;
     }

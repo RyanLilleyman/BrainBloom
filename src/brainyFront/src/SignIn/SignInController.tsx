@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Platform,
+} from "react-native";
 import Separator from "../Components/Separator";
-import { Colors, Sizes } from "../Components/Separator"; //
+import { Colors, Sizes } from "../Components/Separator";
 import { TextInput } from "react-native-paper";
 import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
-
 export interface SignInProps {
   navigation: any;
 }
@@ -26,8 +31,8 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     validationSchema: SignInValidationSchema,
     onSubmit: (values) => {
       console.log(values);
+      navigation.replace("MainView");
       // Handle form submission here
-      
     },
   });
   const styles = StyleSheet.create({
@@ -96,33 +101,31 @@ export const SignInFormController1: React.FC<SignInProps> = ({
         style={[styles.inputContainerStyle, styles.fontSize]}
         label="Password..."
         value={formik.values.password}
-        onChangeText={(text) => {
-          formik.setFieldValue("password", text);
-        }}
-        secureTextEntry={securePasswordTextEntry}
+        onChangeText={(text) => formik.setFieldValue("password", text)}
+        secureTextEntry={securePasswordTextEntry} // Same as sign-up form
         activeOutlineColor="white"
         placeholderTextColor="white"
         outlineColor="white"
         textColor="white"
         selectionColor="white"
-        multiline={true}
         right={
           <TextInput.Icon
-            icon={securePasswordTextEntry ? "eye" : "eye-off"}
+            icon={securePasswordTextEntry ? "eye-off" : "eye"}
             color="white"
-            onPress={() => setPasswordTextEntry(!securePasswordTextEntry)}
+            onPress={() => setPasswordTextEntry(!securePasswordTextEntry)} // Toggling visibility
           />
         }
         theme={{
-          colors: {
-            onSurfaceVariant: "white",
-          },
+          colors: { onSurfaceVariant: "white" },
         }}
       />
       {formik.errors.password && (
         <Text style={styles.checkText}>{formik.errors.password}</Text>
       )}
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("MainView")}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => formik.handleSubmit(undefined)}
+      >
         <Text style={styles.text}>Sign In</Text>
       </TouchableOpacity>
       <Separator label="Or" color={Colors.White} fontSize={Sizes.Large} />

@@ -120,9 +120,7 @@ const SignUpFormController: React.FC = () => {
           <TextInput.Icon
             icon={securePasswordTextEntry ? "eye" : "eye-off"}
             color="white"
-            onPress={() =>
-              setSecureConfirmPasswordTextEntry(!secureConfirmPasswordTextEntry)
-            }
+            onPress={() => setSecurePasswordTextEntry(!securePasswordTextEntry)}
           />
         }
         theme={{
@@ -150,9 +148,11 @@ const SignUpFormController: React.FC = () => {
         selectionColor="white"
         right={
           <TextInput.Icon
-            icon={securePasswordTextEntry ? "eye" : "eye-off"}
+            icon={secureConfirmPasswordTextEntry ? "eye" : "eye-off"}
             color="white"
-            onPress={() => setSecurePasswordTextEntry(!securePasswordTextEntry)}
+            onPress={() =>
+              setSecureConfirmPasswordTextEntry(!secureConfirmPasswordTextEntry)
+            }
           />
         }
         theme={{
