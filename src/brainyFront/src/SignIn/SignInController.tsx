@@ -102,7 +102,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
         label="Password..."
         value={formik.values.password}
         onChangeText={(text) => formik.setFieldValue("password", text)}
-        secureTextEntry={securePasswordTextEntry} // Same as sign-up form
+        secureTextEntry={securePasswordTextEntry}
         activeOutlineColor="white"
         placeholderTextColor="white"
         outlineColor="white"
@@ -112,7 +112,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
           <TextInput.Icon
             icon={securePasswordTextEntry ? "eye-off" : "eye"}
             color="white"
-            onPress={() => setPasswordTextEntry(!securePasswordTextEntry)} // Toggling visibility
+            onPress={() => setPasswordTextEntry(!securePasswordTextEntry)} 
           />
         }
         theme={{
