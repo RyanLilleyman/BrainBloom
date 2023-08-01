@@ -2,6 +2,6 @@ import { Module } from '@nestjs/common';
 import { ThoughtsController } from './thoughts.controller';
 
 @Module({
-  controllers: [ThoughtsController]
+  controllers: [ThoughtsController],
 })
 export class ThoughtsModule {}
