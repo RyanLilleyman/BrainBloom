@@ -1,18 +1,36 @@
-import * as axios from "axios";
+import axios from "axios";
 import { UserDto } from "./UserDto";
 export class UserModel {
-  public async signIn(userDto: UserDto, navigation): Promise<UserDto>{
-    return axios.get("http://localhost:3000/signin", userDto)
+  public static async signIn(
+    userDto: UserDto,
+    navigation: any
+  ): Promise<UserDto> {
+    return await axios
+      .post("http://localhost:3000/auth/signin", { data: userDto })
       .then((response: any) => {
         navigation.navigate("MainView");
         console.log(response.data);
         return response.data;
-      }).
-      catch((error: any) => {
+      })
+      .catch((error: any) => {
         console.log(error);
-      }).
-      finally(() => {
-        
-      });
+      })
+      .finally(() => {});
+  }
+  public static async signUp(
+    userDto: UserDto,
+    navigation: any
+  ): Promise<UserDto> {
+    return await axios
+      .post("http://localhost:3000/auth/signup", { data: userDto })
+      .then((response: any) => {
+        navigation.navigate("SignIn1");
+        console.log(response.data);
+        return response.data;
+      })
+      .catch((error: any) => {
+        console.log(error);
+      })
+      .finally(() => {});
   }
 }

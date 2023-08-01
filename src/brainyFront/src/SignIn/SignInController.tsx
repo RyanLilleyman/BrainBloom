@@ -11,6 +11,8 @@ import { Colors, Sizes } from "../Components/Separator";
 import { TextInput } from "react-native-paper";
 import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
+import { UserModel } from "../User/UserModel";
+import { UserDto } from "../User/UserDto";
 export interface SignInProps {
   navigation: any;
 }
@@ -29,9 +31,9 @@ export const SignInFormController1: React.FC<SignInProps> = ({
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: SignInValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values: UserDto)  => {
       console.log(values);
-      navigation.replace("MainView");
+      UserModel.signIn(values, navigation);
       // Handle form submission here
     },
   });
@@ -59,13 +61,13 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     noPaddingInput: {
       backgroundColor: "transparent",
       paddingHorizontal: 0,
-      background: "white",
+      // background: "white",
     },
     fontSize: {
       fontSize: 18,
       textAlign: "auto",
       color: "#F5F5F5",
-      background: "white",
+      
     },
     checkText: {
       color: "#F5F5F5",

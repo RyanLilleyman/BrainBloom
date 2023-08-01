@@ -5,7 +5,7 @@ import { ThoughtsModule } from './thoughts/thoughts.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ThoughtsModule, AuthModule],
+  imports: [AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

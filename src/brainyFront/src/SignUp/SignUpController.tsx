@@ -11,6 +11,8 @@ import { useFormik } from "formik";
 import { TextInput } from "react-native-paper";
 import Separator from "../Components/Separator";
 import { Colors, Sizes } from "../Components/Separator";
+import { UserModel } from "../User/UserModel";
+import { UserDto } from "../User/UserDto";
 
 const SignUpFormController: React.FC = ({ navigation }) => {
   // const [isLoading, setisLoading] = useState<boolean>(false);
@@ -83,9 +85,9 @@ const SignUpFormController: React.FC = ({ navigation }) => {
   const formik = useFormik({
     initialValues: { email: "", password: "", confirmPassword: "" },
     validationSchema: SignUpValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values: UserDto) => {
       console.log(values);
-      // Handle form submission here
+      UserModel.signUp(values, navigation);
     },
   });
   return (
