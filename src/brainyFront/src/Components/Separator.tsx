@@ -31,6 +31,7 @@ const Separator: React.FC<Props> = ({ label, color, fontSize }) => {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+      justifyContent: "center",
     },
     Line: {
       width: "15%",

@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Touchable,
+} from "react-native";
 import { SignUpValidationSchema } from "./SIgnUpValidation";
 import { useFormik } from "formik";
 import { TextInput } from "react-native-paper";
+import Separator from "../Components/Separator";
+import { Colors, Sizes } from "../Components/Separator";
 
-const SignUpFormController: React.FC = () => {
+const SignUpFormController: React.FC = ({ navigation }) => {
   // const [isLoading, setisLoading] = useState<boolean>(false);
   const styles = StyleSheet.create({
     inLine: {
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
     },
@@ -22,7 +30,7 @@ const SignUpFormController: React.FC = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      paddingTop: 20,
+      paddingVertical: 20,
       paddingHorizontal: 20,
     },
     inLineContainer: {
@@ -34,9 +42,8 @@ const SignUpFormController: React.FC = () => {
     button: {
       width: 150,
       backgroundColor: "#00c1bd",
-      marginVertical: 15,
+      marginVertical: 10,
       marginHorizontal: 10,
-      marginBottom: 25,
       borderRadius: 10,
       padding: 10,
     },
@@ -170,6 +177,13 @@ const SignUpFormController: React.FC = () => {
         onPress={() => formik.handleSubmit(undefined)}
       >
         <Text style={styles.text4}>Submit</Text>
+      </TouchableOpacity>
+      <Separator label="or" color={Colors.White} fontSize={Sizes.Large} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => formik.handleSubmit(undefined)}
+      >
+        <Text style={styles.text4}>Back</Text>
       </TouchableOpacity>
     </View>
   );

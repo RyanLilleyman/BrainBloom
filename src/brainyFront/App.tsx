@@ -5,7 +5,6 @@ import { StatusBar } from "expo-status-bar"; //
 import { PaperProvider } from "react-native-paper";
 
 import SignIn1 from "./src/SignIn/SignInView";
-// import SignIn2 from "./src/signIn/signIn2.view";
 import LoadingScreen from "./src/Loading/LoadingView";
 import SignupForm from "./src/SignUp/SignUpView";
 import MainView from "./src/MainPage/MainPageView";
