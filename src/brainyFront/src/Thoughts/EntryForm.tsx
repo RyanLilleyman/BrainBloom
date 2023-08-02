@@ -120,7 +120,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 5,
     padding: 20,
-    marginBottom: 50, 
+    marginBottom: 50,
+    borderColor: "black",
+    borderWidth: 1,
   },
   input: {
     marginBottom: 10,

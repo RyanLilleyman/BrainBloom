@@ -1,11 +1,15 @@
-import React from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { useEffect, useState } from "react";
 import {
+  ViewStyle,
+  TextStyle,
   View,
   Text,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
   SafeAreaView,
+  EmitterSubscription,
 } from "react-native";
 
 /**
@@ -14,14 +18,42 @@ import {
  * @return {ReactElement} The rendered Attention component.
  */
 const Attention: React.FC = () => {
-  const { width, height } = Dimensions.get("window");
+  const [width, setWidth] = useState<number>(Dimensions.get("window").width);
+  const height: number = Dimensions.get("window").height;
+  const [index, setIndex] = useState<boolean>(true);
 
-  const styles = StyleSheet.create({
+  useEffect(() => {
+    const updateFormWidth: () => void = () => {
+      const newWidth: number = Dimensions.get("window").width;
+      setWidth(newWidth);
+    };
+
+    const updateFormWidthDelayed = () => setTimeout(updateFormWidth, 100);
+
+    const dimensionsListener: EmitterSubscription = Dimensions.addEventListener(
+      "change",
+      updateFormWidthDelayed
+    );
+
+    return () => {
+      clearTimeout(updateFormWidthDelayed());
+      dimensionsListener.remove();
+    };
+  }, []);
+
+  type Styles = {
+    container: ViewStyle;
+    trackContainer: ViewStyle;
+    trackBox: ViewStyle;
+    buttonsContainer: ViewStyle;
+    button: ViewStyle;
+    text: TextStyle;
+  };
+  const styles = StyleSheet.create<Styles>({
     container: {
       width: width,
       height: height,
       flex: 1,
-      gap: 10,
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
@@ -29,41 +61,51 @@ const Attention: React.FC = () => {
     },
     trackContainer: {
       width: "100%",
-      borderColor: "black",
-      borderWidth: 1,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       margin: 20,
       gap: 10,
-      flex: 3,
+      flex: 4,
     },
     trackBox: {
+      backgroundColor: "white",
       display: "flex",
       justifyContent: "center",
       borderColor: "black",
       width: "90%",
+      maxWidth: 400,
       borderWidth: 1,
-      flexGrow:1,
+      flexGrow: 1,
       textAlign: "center",
-      
+      borderRadius: 5,
     },
     buttonsContainer: {
-      borderColor: "black",
-      borderWidth: 1,
+      width: "90%",
+      maxWidth: 400,
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
       flexWrap: "wrap",
-      flex:1,
-      gap: 3,
+      marginBottom: 10,
+      flex: 1,
+      gap: 10,
+      padding: 20,
     },
     button: {
+      backgroundColor: "#00c1bd",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 5,
+      height: "50%",
+      width: "33%",
       borderColor: "black",
       borderWidth: 1,
       flex: 1,
+      padding: 10,
     },
     text: {
       fontSize: 18,
@@ -79,18 +121,31 @@ const Attention: React.FC = () => {
       </TouchableOpacity>
     );
   }
-  const buttons: JSX.Element[] = [];
-  for (let i = 0; i < 3; i++) {
-    buttons.push(
-      <TouchableOpacity key={i} style={styles.button}>
-        <Text style={styles.text}>Button {i + 1}</Text>
-      </TouchableOpacity>
-    );
-  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.trackContainer}>{trackContents}</View>
-      <View style={styles.buttonsContainer}>{buttons}</View>
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity
+          key={1}
+          style={styles.button}
+          onPress={() => {
+            setIndex(!index);
+          }}
+        >
+          <MaterialCommunityIcons
+            name={index ? "play" : "pause"}
+            size={30}
+            color={index ? "white" : "#B0C4DE"}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity key={1} style={styles.button}>
+          <MaterialCommunityIcons name={"repeat"} size={30} color={"white"} />
+        </TouchableOpacity>
+        <TouchableOpacity key={2} style={styles.button}>
+          <MaterialCommunityIcons name={"stop"} size={30} color={"white"} />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };

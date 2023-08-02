@@ -5,7 +5,6 @@ import {
   ScrollView,
   SafeAreaView,
   Animated,
-  Keyboard,
   TouchableOpacity,
 } from "react-native";
 import { FAB, Searchbar } from "react-native-paper";

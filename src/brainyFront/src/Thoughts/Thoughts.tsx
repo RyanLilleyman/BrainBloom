@@ -3,10 +3,10 @@ import ThoughtsView from "./ThoughtsView";
 import { Animated } from "react-native";
 
 const Thoughts: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [entries, setEntries] = useState([]);
-  const [open, setOpen] = useState(false);
-  const formOpacity = useRef(new Animated.Value(0)).current;
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [entries, setEntries] = useState<object[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+  const formOpacity: Animated.Value = useRef(new Animated.Value(0)).current;
 
   const handleFabPress = () => {
     setOpen(!open);
