@@ -4,19 +4,8 @@ import Attention from "../Attention/AttentionView";
 import Thoughts from "../Thoughts/Thoughts";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const MainView = () => {
+const MainView: React.FC =() => {
   const [index, setIndex] = React.useState(0);
-  const [resetAttention, setResetAttention] = React.useState(null);
-
-  const onReset = (resetFunction) => {
-    setResetAttention(() => resetFunction);
-  };
-
-  React.useEffect(() => {
-    if (index !== 1 && resetAttention) {
-      resetAttention();
-    }
-  }, [index, resetAttention]);
 
   const renderScene = () => {
     switch (index) {
@@ -28,6 +17,7 @@ const MainView = () => {
         return null;
     }
   };
+  //extract sytles from the return 
   return (
     <View style={{ flex: 1 }}>
       {renderScene()}

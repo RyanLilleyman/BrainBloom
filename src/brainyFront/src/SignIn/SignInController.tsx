@@ -13,6 +13,7 @@ import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
 import { UserModel } from "../User/UserModel";
 import { UserDto } from "../User/UserDto";
+import MainView from "../MainPage/MainPageView";
 
 export interface SignInProps {
   navigation: any;
@@ -34,7 +35,8 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     validationSchema: SignInValidationSchema,
     onSubmit: (values: UserDto)  => {
       console.log(values);
-      UserModel.signIn(values, navigation);
+      navigation.navigate("MainView");
+      // UserModel.signIn(values, navigation);
       // Handle form submission here
     },
   });

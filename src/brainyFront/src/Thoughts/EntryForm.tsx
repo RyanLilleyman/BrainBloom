@@ -11,7 +11,8 @@ import {
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 
-const EntryForm = ({
+const EntryForm: React.FC = ({
+  //need a props object to secify these props
   open,
   formOpacity,
   entries,

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import ThoughtsView from "./ThoughtsView";
 import { Animated } from "react-native";
 
-const Thoughts = () => {
+const Thoughts: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [entries, setEntries] = useState([]);
   const [open, setOpen] = useState(false);
