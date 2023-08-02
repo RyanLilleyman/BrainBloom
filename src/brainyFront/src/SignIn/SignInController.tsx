@@ -35,7 +35,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     validationSchema: SignInValidationSchema,
     onSubmit: (values: UserDto)  => {
       console.log(values);
-      UserModel.signIn(values, navigation);
+      // UserModel.signIn(values, navigation);
       // Handle form submission here
     },
   });
@@ -128,7 +128,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       )}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => formik.handleSubmit(undefined)}
+        onPress={() => navigation.navigate("MainView")}
       >
         <Text style={styles.text}>Sign In</Text>
       </TouchableOpacity>

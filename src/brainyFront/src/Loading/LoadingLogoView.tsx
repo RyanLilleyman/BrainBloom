@@ -39,18 +39,18 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1000,
+      duration: 500,
       useNativeDriver: true,
     }).start(() => {
       setTimeout(() => {
         Animated.timing(fadeAnim, {
           toValue: 0,
-          duration: 1000,
+          duration: 500,
           useNativeDriver: true,
         }).start(() => {
           navigation.replace('SignIn1');
         });
-      }, 2000); 
+      }, 1000); 
     });
   }, [fadeAnim, navigation])
 
