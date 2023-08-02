@@ -13,6 +13,7 @@ import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
 import { UserModel } from "../User/UserModel";
 import { UserDto } from "../User/UserDto";
+
 export interface SignInProps {
   navigation: any;
 }
@@ -37,6 +38,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       // Handle form submission here
     },
   });
+  //make a Styles type for the styles
   const styles = StyleSheet.create({
     box: {
       backgroundColor: "#034d59", //rgba(2, 60, 73, 1),rgba(0, 193, 190, 0.5),rgba(173, 227, 226, 1)
@@ -61,7 +63,6 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     noPaddingInput: {
       backgroundColor: "transparent",
       paddingHorizontal: 0,
-      // background: "white",
     },
     fontSize: {
       fontSize: 18,
@@ -73,7 +74,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       color: "#F5F5F5",
     },
   });
-  //()=>formik.handleSubmit(undefined), also switch from navigate to replace
+  //need to implement error response from the server
   return (
     <View style={styles.box}>
       <TextInput

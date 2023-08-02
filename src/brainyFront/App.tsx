@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack"; //
 import { StatusBar } from "expo-status-bar"; //
-import { PaperProvider } from "react-native-paper";
+import * as reactNativePaper from "react-native-paper";
 
 import SignIn1 from "./src/SignIn/SignInView";
 import LoadingScreen from "./src/Loading/LoadingLogoView";
@@ -17,7 +17,7 @@ const Stack = createStackNavigator(); //
  */
 const App: React.FC = () => {
   return (
-    <PaperProvider>
+    <reactNativePaper.PaperProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -31,7 +31,7 @@ const App: React.FC = () => {
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
-    </PaperProvider>
+    </reactNativePaper.PaperProvider>
   );
 };
 

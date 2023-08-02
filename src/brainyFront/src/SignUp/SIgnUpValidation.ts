@@ -9,6 +9,7 @@ export const SignUpValidationSchema = Yup.object().shape({
     .matches(/[a-z]/, "Password must contain a lowercase letter")
     .matches(/[0-9]/, "Password must contain a number")
     .matches(/[^A-Za-z0-9]/, "Password must contain a special character"),
-  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
-  .required('Required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Required"),
 });

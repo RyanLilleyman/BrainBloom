@@ -90,6 +90,7 @@ const SignUpFormController: React.FC = ({ navigation }) => {
       UserModel.signUp(values, navigation);
     },
   });
+  //implement error message from the server
   return (
     <View style={styles.box}>
       <TextInput
