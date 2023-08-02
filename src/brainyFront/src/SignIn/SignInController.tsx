@@ -35,8 +35,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
     validationSchema: SignInValidationSchema,
     onSubmit: (values: UserDto)  => {
       console.log(values);
-      navigation.navigate("MainView");
-      // UserModel.signIn(values, navigation);
+      UserModel.signIn(values, navigation);
       // Handle form submission here
     },
   });

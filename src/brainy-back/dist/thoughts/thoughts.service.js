@@ -6,16 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ThoughtsModule = void 0;
+exports.ThoughtsService = void 0;
 const common_1 = require("@nestjs/common");
-const thoughts_service_1 = require("./thoughts.service");
-const thoughts_controller_1 = require("./thoughts.controller");
-let ThoughtsModule = exports.ThoughtsModule = class ThoughtsModule {
+let ThoughtsService = exports.ThoughtsService = class ThoughtsService {
+    create(createThoughtDto) {
+        return 'This action adds a new thought';
+    }
+    findAll() {
+        return `This action returns all thoughts`;
+    }
+    findOne(id) {
+        return `This action returns a #${id} thought`;
+    }
+    update(id, updateThoughtDto) {
+        return `This action updates a #${id} thought`;
+    }
+    remove(id) {
+        return `This action removes a #${id} thought`;
+    }
 };
-exports.ThoughtsModule = ThoughtsModule = __decorate([
-    (0, common_1.Module)({
-        controllers: [thoughts_controller_1.ThoughtsController],
-        providers: [thoughts_service_1.ThoughtsService]
-    })
-], ThoughtsModule);
-//# sourceMappingURL=thoughts.module.js.map
+exports.ThoughtsService = ThoughtsService = __decorate([
+    (0, common_1.Injectable)()
+], ThoughtsService);
+//# sourceMappingURL=thoughts.service.js.map
