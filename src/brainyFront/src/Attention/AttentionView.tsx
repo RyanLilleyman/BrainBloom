@@ -37,16 +37,17 @@ const Attention: React.FC = () => {
       alignItems: "center",
       margin: 20,
       gap: 10,
-      flex: 1,
+      flex: 3,
     },
     trackBox: {
       display: "flex",
       justifyContent: "center",
       borderColor: "black",
-      width: "100%",
+      width: "90%",
       borderWidth: 1,
-      flexGrow: 1,
+      flexGrow:1,
       textAlign: "center",
+      
     },
     buttonsContainer: {
       borderColor: "black",
@@ -56,7 +57,7 @@ const Attention: React.FC = () => {
       justifyContent: "center",
       alignItems: "center",
       flexWrap: "wrap",
-      flex: 1,
+      flex:1,
       gap: 3,
     },
     button: {
