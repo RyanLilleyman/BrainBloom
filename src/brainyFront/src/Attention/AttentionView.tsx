@@ -1,5 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
+import { Audio, AVPlaybackSource } from "expo-av";
 import {
   ViewStyle,
   TextStyle,
@@ -17,10 +18,43 @@ import {
  *
  * @return {ReactElement} The rendered Attention component.
  */
-const Attention: React.FC = () => {
+const Attention: React.FC<void> = () => {
   const [width, setWidth] = useState<number>(Dimensions.get("window").width);
+  const [index, setIndex] = useState<number>(0);
+  const [isPlay, setPlay] = useState<boolean>(true);
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
   const height: number = Dimensions.get("window").height;
-  const [index, setIndex] = useState<boolean>(true);
+
+  const pathArray: AVPlaybackSource[] = [
+    { uri: require.resolve("../Audio/aud1.mp3") },
+    { uri: require.resolve("../Audio/aud2.mp3") },
+    { uri: require.resolve("../Audio/aud3.mp3") },
+    { uri: require.resolve("../Audio/aud4.mp3") },
+  ];
+
+  const playSound: (
+    pathArray: AVPlaybackSource[],
+    index: number
+  ) => Promise<void> = async (pathArray: AVPlaybackSource[], index: number) => {
+    console.log("loading sound");
+    const { sound: audioSound } = await Audio.Sound.createAsync(
+      pathArray[index]
+    );
+    setSound(audioSound);
+    await audioSound.playAsync();
+  };
+
+  const handleTrackPress: (pathArray: string[], index: number) => void = (
+    pathArray: string[],
+    index: number
+  ) => {
+    playSound(pathArray, index);
+  };
+
+  useEffect(() => {
+    console.log(index);
+  }, [index]);
 
   useEffect(() => {
     const updateFormWidth: () => void = () => {
@@ -70,7 +104,7 @@ const Attention: React.FC = () => {
       flex: 4,
     },
     trackBox: {
-      backgroundColor: "white",
+      backgroundColor: "#F5F5F5",
       display: "flex",
       justifyContent: "center",
       borderColor: "black",
@@ -116,7 +150,14 @@ const Attention: React.FC = () => {
   const trackContents: JSX.Element[] = [];
   for (let i = 0; i < 4; i++) {
     trackContents.push(
-      <TouchableOpacity key={i} style={styles.trackBox}>
+      <TouchableOpacity
+        key={i}
+        onPress={() => {
+          setIndex(i);
+          handleTrackPress(pathArray, index);
+        }}
+        style={styles.trackBox}
+      >
         <Text style={styles.text}>Track {i + 1}</Text>
       </TouchableOpacity>
     );
@@ -127,22 +168,22 @@ const Attention: React.FC = () => {
       <View style={styles.trackContainer}>{trackContents}</View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          key={1}
+          key={10}
           style={styles.button}
           onPress={() => {
-            setIndex(!index);
+            setPlay(!isPlay);
           }}
         >
           <MaterialCommunityIcons
-            name={index ? "play" : "pause"}
+            name={isPlay ? "play" : "pause"}
             size={30}
-            color={index ? "white" : "#B0C4DE"}
+            color={isPlay ? "white" : "#B0C4DE"}
           />
         </TouchableOpacity>
-        <TouchableOpacity key={1} style={styles.button}>
+        <TouchableOpacity key={11} style={styles.button}>
           <MaterialCommunityIcons name={"repeat"} size={30} color={"white"} />
         </TouchableOpacity>
-        <TouchableOpacity key={2} style={styles.button}>
+        <TouchableOpacity key={12} style={styles.button}>
           <MaterialCommunityIcons name={"stop"} size={30} color={"white"} />
         </TouchableOpacity>
       </View>

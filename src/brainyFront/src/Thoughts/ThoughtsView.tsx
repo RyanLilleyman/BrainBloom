@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     borderRadius: 25,
-    backgroundColor: "white",
+    backgroundColor: "#F5F5F5",
     elevation: 4,
   },
   scrollView: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   fab: {
-    backgroundColor: "white", 
+    backgroundColor: "#F5F5F5", 
   },
   entryFormContainer: {
     ...StyleSheet.absoluteFillObject,

@@ -117,12 +117,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   formContainer: {
-    backgroundColor: "white",
+    backgroundColor: "#F5F5F5",
     borderRadius: 5,
     padding: 20,
     marginBottom: 50,
     borderColor: "black",
-    borderWidth: 1,
+    borderWidth: 0.5,
   },
   input: {
     marginBottom: 10,
@@ -135,18 +135,20 @@ const styles = StyleSheet.create({
   saveButton: {
     flex: 1,
     marginRight: 5,
-    backgroundColor: "rgba(173, 227, 226, 1)",
-    elevation: 0,
+    backgroundColor: "#00c1bd",
+    elevation: 1,
   },
   closeButton: {
     flex: 1,
     marginLeft: 5,
-    backgroundColor: "rgba(173, 227, 226, 1)",
-    elevation: 0,
+    backgroundColor: "#00c1bd",
+    elevation: 1,
   },
   buttonLabel: {
     fontWeight: "bold",
-    color: "white",
+    fontSize: 18,
+    color: "#F5F5F5",
+    
   },
 });
 
