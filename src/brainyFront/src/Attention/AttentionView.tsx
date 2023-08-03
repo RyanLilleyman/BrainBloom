@@ -14,75 +14,26 @@ import {
 } from "react-native";
 
 interface AttentionProps {
-  active: number;
+  isPlay: boolean;
+  soundIndex: number;
+  setSoundIndex: (index: number) => void;
+  stopSound: () => void;
+  repeatSound: () => void;
+  handlePlayPress: () => void;
 }
-const Attention: React.FC<AttentionProps> = ({ active }) => {
+
+const Attention: React.FC<AttentionProps> = ({
+  isPlay,
+  soundIndex,
+  setSoundIndex,
+  stopSound,
+  repeatSound,
+  handlePlayPress,
+}) => {
   const [width, setWidth] = useState<number>(Dimensions.get("window").width);
-  const [index, setIndex] = useState<number>(0);
-  const [isPlay, setPlay] = useState<boolean>(false);
-  const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   const height: number = Dimensions.get("window").height;
 
-  const pathArray: AVPlaybackSource[] = [
-    { uri: require("../Audio/aud1.mp3") },
-    { uri: require("../Audio/aud2.mp3") },
-    { uri: require("../Audio/aud3.mp3") },
-    { uri: require("../Audio/aud4.mp3") },
-  ];
-
-  
-
-  useEffect(() => {
-    if (index !== null) {
-      loadSound(pathArray, index);
-      setPlay(true);
-    }
-  }, [index]);
-
-  const loadSound = async (pathArray: AVPlaybackSource[], index: number) => {
-    console.log("loading sound");
-    if (sound) {
-      await sound.unloadAsync();
-    }
-    const { sound: audioSound } = await Audio.Sound.createAsync(
-      pathArray[index]
-    );
-    setSound(audioSound);
-  };
-
-  const playSound = async () => {
-    console.log("playing sound");
-    await sound?.playAsync();
-  };
-
-  const pauseSound = async () => {
-    console.log("pausing sound");
-    await sound?.pauseAsync();
-  };
-
-  const stopSound = async () => {
-    console.log("stopping sound");
-    await sound?.stopAsync();
-    setPlay(true);
-  };
-
-  const repeatSound = async () => {
-    if (!isPlay) {
-      console.log("repeating sound");
-      await sound?.stopAsync();
-      await playSound();
-    }
-  };
-
-  const handlePlayPress = () => {
-    setPlay(!isPlay);
-    if (isPlay) {
-      playSound();
-    } else {
-      pauseSound();
-    }
-  };
 
   useEffect(() => {
     const updateFormWidth: () => void = () => {
@@ -180,7 +131,7 @@ const Attention: React.FC<AttentionProps> = ({ active }) => {
       <TouchableOpacity
         key={i}
         onPress={() => {
-          setIndex(i);
+          setSoundIndex(i);
         }}
         style={styles.trackBox}
       >
@@ -192,7 +143,7 @@ const Attention: React.FC<AttentionProps> = ({ active }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.trackContainer}>{trackContents}</View>
-      <Text style={styles.text}>ATT {index + 1} selected!</Text>
+      <Text style={styles.text}>ATT {soundIndex + 1} selected!</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           key={10}
