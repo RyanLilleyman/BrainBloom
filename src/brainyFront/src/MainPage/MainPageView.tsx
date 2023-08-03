@@ -12,7 +12,7 @@ const MainView: React.FC =() => {
       case 0:
         return <Thoughts />;
       case 1:
-        return <Attention />;
+        return <Attention active={index} />;
       default:
         return null;
     }

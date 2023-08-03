@@ -13,48 +13,76 @@ import {
   EmitterSubscription,
 } from "react-native";
 
-/**
- * Renders a component that displays an attention message.
- *
- * @return {ReactElement} The rendered Attention component.
- */
-const Attention: React.FC<void> = () => {
+interface AttentionProps {
+  active: number;
+}
+const Attention: React.FC<AttentionProps> = ({ active }) => {
   const [width, setWidth] = useState<number>(Dimensions.get("window").width);
   const [index, setIndex] = useState<number>(0);
-  const [isPlay, setPlay] = useState<boolean>(true);
+  const [isPlay, setPlay] = useState<boolean>(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   const height: number = Dimensions.get("window").height;
 
   const pathArray: AVPlaybackSource[] = [
-    { uri: require.resolve("../Audio/aud1.mp3") },
-    { uri: require.resolve("../Audio/aud2.mp3") },
-    { uri: require.resolve("../Audio/aud3.mp3") },
-    { uri: require.resolve("../Audio/aud4.mp3") },
+    { uri: require("../Audio/aud1.mp3") },
+    { uri: require("../Audio/aud2.mp3") },
+    { uri: require("../Audio/aud3.mp3") },
+    { uri: require("../Audio/aud4.mp3") },
   ];
 
-  const playSound: (
-    pathArray: AVPlaybackSource[],
-    index: number
-  ) => Promise<void> = async (pathArray: AVPlaybackSource[], index: number) => {
+  
+
+  useEffect(() => {
+    if (index !== null) {
+      loadSound(pathArray, index);
+      setPlay(true);
+    }
+  }, [index]);
+
+  const loadSound = async (pathArray: AVPlaybackSource[], index: number) => {
     console.log("loading sound");
+    if (sound) {
+      await sound.unloadAsync();
+    }
     const { sound: audioSound } = await Audio.Sound.createAsync(
       pathArray[index]
     );
     setSound(audioSound);
-    await audioSound.playAsync();
   };
 
-  const handleTrackPress: (pathArray: string[], index: number) => void = (
-    pathArray: string[],
-    index: number
-  ) => {
-    playSound(pathArray, index);
+  const playSound = async () => {
+    console.log("playing sound");
+    await sound?.playAsync();
   };
 
-  useEffect(() => {
-    console.log(index);
-  }, [index]);
+  const pauseSound = async () => {
+    console.log("pausing sound");
+    await sound?.pauseAsync();
+  };
+
+  const stopSound = async () => {
+    console.log("stopping sound");
+    await sound?.stopAsync();
+    setPlay(true);
+  };
+
+  const repeatSound = async () => {
+    if (!isPlay) {
+      console.log("repeating sound");
+      await sound?.stopAsync();
+      await playSound();
+    }
+  };
+
+  const handlePlayPress = () => {
+    setPlay(!isPlay);
+    if (isPlay) {
+      playSound();
+    } else {
+      pauseSound();
+    }
+  };
 
   useEffect(() => {
     const updateFormWidth: () => void = () => {
@@ -74,7 +102,6 @@ const Attention: React.FC<void> = () => {
       dimensionsListener.remove();
     };
   }, []);
-
   type Styles = {
     container: ViewStyle;
     trackContainer: ViewStyle;
@@ -154,11 +181,10 @@ const Attention: React.FC<void> = () => {
         key={i}
         onPress={() => {
           setIndex(i);
-          handleTrackPress(pathArray, index);
         }}
         style={styles.trackBox}
       >
-        <Text style={styles.text}>Track {i + 1}</Text>
+        <Text style={styles.text}>ATT {i + 1}</Text>
       </TouchableOpacity>
     );
   }
@@ -166,24 +192,23 @@ const Attention: React.FC<void> = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.trackContainer}>{trackContents}</View>
+      <Text style={styles.text}>ATT {index + 1} selected!</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           key={10}
           style={styles.button}
-          onPress={() => {
-            setPlay(!isPlay);
-          }}
+          onPress={handlePlayPress}
         >
           <MaterialCommunityIcons
             name={isPlay ? "play" : "pause"}
             size={30}
-            color={isPlay ? "white" : "#B0C4DE"}
+            color={"white"}
           />
         </TouchableOpacity>
-        <TouchableOpacity key={11} style={styles.button}>
+        <TouchableOpacity key={11} style={styles.button} onPress={repeatSound}>
           <MaterialCommunityIcons name={"repeat"} size={30} color={"white"} />
         </TouchableOpacity>
-        <TouchableOpacity key={12} style={styles.button}>
+        <TouchableOpacity key={12} style={styles.button} onPress={stopSound}>
           <MaterialCommunityIcons name={"stop"} size={30} color={"white"} />
         </TouchableOpacity>
       </View>
