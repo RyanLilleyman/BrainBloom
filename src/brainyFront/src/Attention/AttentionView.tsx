@@ -34,7 +34,6 @@ const Attention: React.FC<AttentionProps> = ({
 
   const height: number = Dimensions.get("window").height;
 
-
   useEffect(() => {
     const updateFormWidth: () => void = () => {
       const newWidth: number = Dimensions.get("window").width;

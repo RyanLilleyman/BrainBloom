@@ -33,7 +33,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: SignInValidationSchema,
-    onSubmit: (values: UserDto)  => {
+    onSubmit: (values: UserDto) => {
       console.log(values);
       // UserModel.signIn(values, navigation);
       // Handle form submission here
@@ -69,7 +69,6 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       fontSize: 18,
       textAlign: "auto",
       color: "#F5F5F5",
-      
     },
     checkText: {
       color: "#F5F5F5",
@@ -116,7 +115,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
           <TextInput.Icon
             icon={securePasswordTextEntry ? "eye-off" : "eye"}
             color="white"
-            onPress={() => setPasswordTextEntry(!securePasswordTextEntry)} 
+            onPress={() => setPasswordTextEntry(!securePasswordTextEntry)}
           />
         }
         theme={{

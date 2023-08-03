@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const SignInValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -9,4 +9,4 @@ export const SignInValidationSchema = Yup.object().shape({
     .matches(/[a-z]/, "Password must contain a lowercase letter")
     .matches(/[0-9]/, "Password must contain a number")
     .matches(/[^A-Za-z0-9]/, "Password must contain a special character"),
-})
+});

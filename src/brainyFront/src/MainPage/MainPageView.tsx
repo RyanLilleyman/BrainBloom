@@ -80,14 +80,16 @@ const MainView: React.FC = () => {
       case 0:
         return <Thoughts />;
       case 1:
-        return <Attention
-          isPlay={isPlay}
-          soundIndex={soundIndex}
-          setSoundIndex={setSoundIndex}
-          stopSound={stopSound}
-          repeatSound={repeatSound}
-          handlePlayPress={handlePlayPress}
-        />;
+        return (
+          <Attention
+            isPlay={isPlay}
+            soundIndex={soundIndex}
+            setSoundIndex={setSoundIndex}
+            stopSound={stopSound}
+            repeatSound={repeatSound}
+            handlePlayPress={handlePlayPress}
+          />
+        );
       default:
         return null;
     }
