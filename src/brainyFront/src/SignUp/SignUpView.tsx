@@ -11,6 +11,12 @@ interface SignupFormProps {
   navigation: any;
 }
 
+/**
+ * Renders the SignUp component, which is a functional component that displays a sign-up form.
+ *
+ * @param {SignupFormProps} navigation - The navigation object used for navigating between screens.
+ * @return {ReactElement} The rendered SignUp component.
+ */
 const SignUp: React.FC<SignupFormProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {

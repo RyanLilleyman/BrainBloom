@@ -8,10 +8,30 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Dimensions,
+  ViewStyle,
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 
-const EntryForm: React.FC = ({
+interface EntryFormProps {
+  open: boolean;
+  formOpacity: Animated.Value;
+  entries: any;
+  setEntries: any;
+  handleFabPress: any;
+}
+
+/**
+ * Renders the entry form component.
+ *
+ * @param {EntryFormProps} props - The component props.
+ * @param {boolean} props.open - Indicates if the entry form is open.
+ * @param {number} props.formOpacity - The opacity of the form.
+ * @param {Array<Entry>} props.entries - The list of entries.
+ * @param {Function} props.setEntries - The function to set the list of entries.
+ * @param {Function} props.handleFabPress - The function to handle the press event on the FAB button.
+ * @return {ReactElement} The rendered entry form component.
+ */
+const EntryForm: React.FC<EntryFormProps> = ({
   //need a props object to secify these props
   open,
   formOpacity,
@@ -26,6 +46,11 @@ const EntryForm: React.FC = ({
   );
 
   useEffect(() => {
+    /**
+     * Updates the width of the form.
+     *
+     * @return {void} No return value.
+     */
     const updateFormWidth = () => {
       const newWidth = Dimensions.get("window").width * 0.9;
       setFormWidth(newWidth);
@@ -50,6 +75,13 @@ const EntryForm: React.FC = ({
     }
   }, [open]);
 
+  /**
+   * Saves the current entries by adding a new entry with the given title,
+   * description, and current date to the list of entries. It then clears
+   * the title and description fields.
+   *
+   * @return {void}
+   */
   const onSave = () => {
     const date = new Date();
     setEntries([...entries, { title, description, date }]);
@@ -107,7 +139,17 @@ const EntryForm: React.FC = ({
   );
 };
 
-const styles = StyleSheet.create({
+type Styles = {
+  keyboardAvoidingView: ViewStyle;
+  container: ViewStyle;
+  formContainer: ViewStyle;
+  input: ViewStyle;
+  buttonContainer: ViewStyle;
+  saveButton: ViewStyle;
+  closeButton: ViewStyle;
+  buttonLabel: ViewStyle;
+}
+const styles = StyleSheet.create<Styles>({
   keyboardAvoidingView: {
     flex: 1,
   },

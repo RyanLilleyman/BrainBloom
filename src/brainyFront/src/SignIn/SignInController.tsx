@@ -4,7 +4,8 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Platform,
+  ViewStyle,
+  TextStyle,
 } from "react-native";
 import Separator from "../Components/Separator";
 import { Colors, Sizes } from "../Components/Separator";
@@ -33,14 +34,27 @@ export const SignInFormController1: React.FC<SignInProps> = ({
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: SignInValidationSchema,
+    /**
+     * Handles the form submission.
+     *
+     * @param {UserDto} values - The values submitted in the form.
+     */
     onSubmit: (values: UserDto) => {
       console.log(values);
       // UserModel.signIn(values, navigation);
       // Handle form submission here
     },
   });
-  //make a Styles type for the styles
-  const styles = StyleSheet.create({
+  type Styles = {
+    box: ViewStyle;
+    button: ViewStyle;
+    text: TextStyle;
+    inputContainerStyle: ViewStyle;
+    noPaddingInput: ViewStyle;
+    fontSize: TextStyle;
+    checkText: TextStyle;
+  };
+  const styles = StyleSheet.create<Styles>({
     box: {
       backgroundColor: "#034d59", //rgba(2, 60, 73, 1),rgba(0, 193, 190, 0.5),rgba(173, 227, 226, 1)
       alignItems: "center",

@@ -10,6 +10,12 @@ import SignInFormController1 from "./SignInController";
 export interface SignInProps {
   navigation: any;
 }
+/**
+ * Generates a function comment for the given function.
+ *
+ * @param {SignInProps} navigation - the navigation object
+ * @return {React.FC} The sign-in component
+ */
 const SignIn1: React.FC<SignInProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {

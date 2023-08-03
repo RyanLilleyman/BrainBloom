@@ -1,10 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 
-const EntryListView = ({ entries, searchQuery, setEntries }) => {
+
+interface EntryListViewProps {
+  entries: object[];
+  searchQuery: string;
+  setEntries: (entries: object[]) => void;
+}
+
+const EntryListView: React.FC<EntryListViewProps> = ({ entries, searchQuery, setEntries }) => {
   //implement useEffect to wait for the changes wthin the entries and queries and
   //fetch all entries from the database each time. actally that would be a waste of time
-  const onDelete = (index) => {
+  const onDelete = (index: number) => {
     setEntries(entries.filter((_, idx) => idx !== index));
   };
   const filteredEntries = entries.filter((entry) => {

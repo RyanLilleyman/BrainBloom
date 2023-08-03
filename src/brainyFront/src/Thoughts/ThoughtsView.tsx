@@ -11,12 +11,22 @@ import { FAB, Searchbar } from "react-native-paper";
 import EntryListView from "./EntryListView";
 import EntryForm from "./EntryForm";
 
+/**
+ * Handles the press event of the FAB (Floating Action Button).
+ *
+ * @return {void}
+ */
 const ThoughtsView = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [entries, setEntries] = useState([]);
   const [open, setOpen] = useState(false);
   const formOpacity = useState(new Animated.Value(0))[0];
 
+  /**
+   * Handles the press event of the FAB (Floating Action Button).
+   *
+   * @return {void}
+   */
   const handleFabPress = () => {
     setOpen(!open);
     Animated.timing(formOpacity, {

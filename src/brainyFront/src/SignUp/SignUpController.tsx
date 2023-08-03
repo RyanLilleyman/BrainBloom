@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Touchable,
+  ViewStyle,
+  TextStyle,
 } from "react-native";
 import { SignUpValidationSchema } from "./SIgnUpValidation";
 import { useFormik } from "formik";
@@ -14,9 +15,41 @@ import { Colors, Sizes } from "../Components/Separator";
 import { UserModel } from "../User/UserModel";
 import { UserDto } from "../User/UserDto";
 
-const SignUpFormController: React.FC = ({ navigation }) => {
+interface SignUpProps {
+  navigation: any;
+}
+/**
+ * Renders a sign-up form.
+ *
+ * @param {React.FC} navigation - the navigation props
+ * @return {React.ReactNode} the rendered sign-up form
+ */
+const SignUpFormController: React.FC<SignUpProps> = ({ navigation }) => {
   // const [isLoading, setisLoading] = useState<boolean>(false);
-  const styles = StyleSheet.create({
+  interface NoPadding {
+    backgroundColor: string;
+    paddingHorizontal: number;
+    background: string;
+  }
+  interface fontSize {
+    fontSize: 18;
+    color: "#F5F5F5";
+    background: "white";
+  }
+
+  type Styles = {
+    inLine: ViewStyle;
+    box: ViewStyle;
+    button: ViewStyle;
+    text4: TextStyle;
+    checkText: TextStyle;
+    inLineContainer: ViewStyle;
+    inputContainerStyle: ViewStyle;
+    noPaddingInput: NoPadding;
+    fontSize: fontSize;
+  };
+
+  const styles = StyleSheet.create<Styles>({
     inLine: {
       display: "flex",
       flexDirection: "column",

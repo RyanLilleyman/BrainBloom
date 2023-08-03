@@ -1,6 +1,5 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
-import { Audio, AVPlaybackSource } from "expo-av";
 import {
   ViewStyle,
   TextStyle,
@@ -22,6 +21,17 @@ interface AttentionProps {
   handlePlayPress: () => void;
 }
 
+/**
+ * Generates the Attention component.
+ *
+ * @param {boolean} isPlay - indicates if the sound is currently playing
+ * @param {number} soundIndex - the index of the selected sound
+ * @param {function} setSoundIndex - sets the index of the selected sound
+ * @param {function} stopSound - stops the sound playback
+ * @param {function} repeatSound - repeats the sound playback
+ * @param {function} handlePlayPress - handles the play button press
+ * @return {JSX.Element} the Attention component
+ */
 const Attention: React.FC<AttentionProps> = ({
   isPlay,
   soundIndex,
@@ -35,6 +45,11 @@ const Attention: React.FC<AttentionProps> = ({
   const height: number = Dimensions.get("window").height;
 
   useEffect(() => {
+    /**
+     * Updates the width of the form.
+     *
+     * @return {void}
+     */
     const updateFormWidth: () => void = () => {
       const newWidth: number = Dimensions.get("window").width;
       setWidth(newWidth);
