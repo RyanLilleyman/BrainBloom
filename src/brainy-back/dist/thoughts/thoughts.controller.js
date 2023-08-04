@@ -15,35 +15,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThoughtsController = void 0;
 const common_1 = require("@nestjs/common");
 const thoughts_service_1 = require("./thoughts.service");
-const create_thought_dto_1 = require("./dto/create-thought.dto");
-const update_thought_dto_1 = require("./dto/update-thought.dto");
 let ThoughtsController = exports.ThoughtsController = class ThoughtsController {
     constructor(thoughtsService) {
         this.thoughtsService = thoughtsService;
     }
-    create(createThoughtDto) {
-        return this.thoughtsService.create(createThoughtDto);
+    createThought(title, date, content) {
+        return this.thoughtsService.createThought(title, date, content);
     }
     findAll() {
         return this.thoughtsService.findAll();
     }
     findOne(id) {
-        return this.thoughtsService.findOne(+id);
-    }
-    update(id, updateThoughtDto) {
-        return this.thoughtsService.update(+id, updateThoughtDto);
-    }
-    remove(id) {
-        return this.thoughtsService.remove(+id);
+        return this.thoughtsService.findOne(id);
     }
 };
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)('title')),
+    __param(1, (0, common_1.Body)('date')),
+    __param(2, (0, common_1.Body)('content')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_thought_dto_1.CreateThoughtDto]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", void 0)
-], ThoughtsController.prototype, "create", null);
+], ThoughtsController.prototype, "createThought", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -57,21 +51,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ThoughtsController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_thought_dto_1.UpdateThoughtDto]),
-    __metadata("design:returntype", void 0)
-], ThoughtsController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], ThoughtsController.prototype, "remove", null);
 exports.ThoughtsController = ThoughtsController = __decorate([
     (0, common_1.Controller)('thoughts'),
     __metadata("design:paramtypes", [thoughts_service_1.ThoughtsService])

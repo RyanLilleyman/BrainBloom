@@ -1,26 +1,56 @@
 import { Injectable } from '@nestjs/common';
 import { CreateThoughtDto } from './dto/create-thought.dto';
 import { UpdateThoughtDto } from './dto/update-thought.dto';
+import { Thought } from './thought.model';
+import { ThoughtsStatus } from './dto/create-thought.dto';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class ThoughtsService {
-  create(createThoughtDto: CreateThoughtDto) {
-    return 'This action adds a new thought';
+  private thoughts: Thought[] = [];
+
+  createThought(title: string, date: string, content: string): Thought {
+    const thought = {
+      id: uuid(),
+      title,
+      date,
+      content,
+      status: ThoughtsStatus.NEUTRAL,
+    };
+    this.thoughts.push(thought);
+    return thought;
   }
 
-  findAll() {
-    return `This action returns all thoughts`;
+  findAll(): Thought[] {
+    return this.thoughts;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} thought`;
+  findOne(id: string): Thought {
+    return this.thoughts.find((thought) => thought.id === id);
   }
 
-  update(id: number, updateThoughtDto: UpdateThoughtDto) {
-    return `This action updates a #${id} thought`;
+  remove(id: string): void {
+    this.thoughts = this.thoughts.filter((thought) => thought.id !== id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} thought`;
-  }
+  // constructor(thoughts: CreateThoughtDto[]) {}
+  // create(createThoughtDto: CreateThoughtDto) {
+  //   return 'This action adds a new thought';
+  // }
+
+  // findAll() {
+  //   return `This action returns all thoughts`;
+  // }
+
+  // findOne(id: number) {
+  //   return `This action returns a #${id} thought`;
+  // }
+
+  // update(id: number, updateThoughtDto: UpdateThoughtDto) {
+  //   return `This action updates a #${id} thought`;
+  // }
+
+  // remove(id: number) {
+  //   return `This action removes a #${id} thought`;
+  // }
 }

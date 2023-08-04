@@ -4,6 +4,6 @@ import { ThoughtsController } from './thoughts.controller';
 
 @Module({
   controllers: [ThoughtsController],
-  providers: [ThoughtsService]
+  providers: [ThoughtsService],
 })
 export class ThoughtsModule {}

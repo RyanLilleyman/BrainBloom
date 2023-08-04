@@ -8,21 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThoughtsService = void 0;
 const common_1 = require("@nestjs/common");
+const create_thought_dto_1 = require("./dto/create-thought.dto");
+const uuid_1 = require("uuid");
 let ThoughtsService = exports.ThoughtsService = class ThoughtsService {
-    create(createThoughtDto) {
-        return 'This action adds a new thought';
+    constructor() {
+        this.thoughts = [];
+    }
+    createThought(title, date, content) {
+        const thought = {
+            id: (0, uuid_1.v4)(),
+            title,
+            date,
+            content,
+            status: create_thought_dto_1.ThoughtsStatus.NEUTRAL,
+        };
+        this.thoughts.push(thought);
+        return thought;
     }
     findAll() {
-        return `This action returns all thoughts`;
+        return this.thoughts;
     }
     findOne(id) {
-        return `This action returns a #${id} thought`;
-    }
-    update(id, updateThoughtDto) {
-        return `This action updates a #${id} thought`;
+        return this.thoughts.find((thought) => thought.id === id);
     }
     remove(id) {
-        return `This action removes a #${id} thought`;
+        this.thoughts = this.thoughts.filter((thought) => thought.id !== id);
     }
 };
 exports.ThoughtsService = ThoughtsService = __decorate([

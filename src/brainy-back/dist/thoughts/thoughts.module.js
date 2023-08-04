@@ -15,7 +15,7 @@ let ThoughtsModule = exports.ThoughtsModule = class ThoughtsModule {
 exports.ThoughtsModule = ThoughtsModule = __decorate([
     (0, common_1.Module)({
         controllers: [thoughts_controller_1.ThoughtsController],
-        providers: [thoughts_service_1.ThoughtsService]
+        providers: [thoughts_service_1.ThoughtsService],
     })
 ], ThoughtsModule);
 //# sourceMappingURL=thoughts.module.js.map
