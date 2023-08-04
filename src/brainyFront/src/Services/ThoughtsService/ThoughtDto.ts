@@ -1,7 +1,6 @@
 export interface ThoughtDto {
-  id: string;
   title: string;
-  date: string;
+  date: Date;
   content: string;
   status: ThoughtsStatus;
 }
