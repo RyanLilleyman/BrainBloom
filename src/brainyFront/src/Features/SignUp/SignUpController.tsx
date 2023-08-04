@@ -12,8 +12,8 @@ import { useFormik } from "formik";
 import { TextInput } from "react-native-paper";
 import Separator from "../../Components/Separator";
 import { Colors, Sizes } from "../../Components/Separator";
-import { UserModel } from "../../Services/User/UserModel";
-import { UserDto } from "../../Services/User/UserDto";
+import { UserModel } from "../../Services/UserService/UserModel";
+import { UserDto } from "../../Services/UserService/UserDto";
 
 interface SignUpProps {
   navigation: any;

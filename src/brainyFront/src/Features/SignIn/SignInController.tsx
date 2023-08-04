@@ -12,8 +12,8 @@ import { Colors, Sizes } from "../../Components/Separator";
 import { TextInput } from "react-native-paper";
 import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
-import { UserModel } from "../../Services/User/UserModel";
-import { UserDto } from "../../Services/User/UserDto";
+import { UserModel } from "../../Services/UserService/UserModel";
+import { UserDto } from "../../Services/UserService/UserDto";
 import MainView from "../../Features/MainPage/MainPageView";
 
 export interface SignInProps {
