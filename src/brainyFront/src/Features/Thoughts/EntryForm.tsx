@@ -11,13 +11,22 @@ import {
   ViewStyle,
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import { ThoughtValidationSchema } from "./ThoughtValidation";
+import { ThoughtModel } from "../../Services/ThoughtsService/ThoughtModel";
+import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
+import { useFormik } from "formik";
 
+type Entry = {
+  title: string;
+  description: string;
+  date: string;
+};
 interface EntryFormProps {
   open: boolean;
   formOpacity: Animated.Value;
-  entries: any;
-  setEntries: any;
-  handleFabPress: any;
+  entries: Array<Entry>;
+  setEntries: Function;
+  handleFabPress: Function;
 }
 
 /**
@@ -44,6 +53,14 @@ const EntryForm: React.FC<EntryFormProps> = ({
   const [formWidth, setFormWidth] = useState(
     Dimensions.get("window").width * 0.9
   );
+
+  const formik = useFormik({
+    initialValues: { title: "", description: "", date: new Date() },
+    validationSchema: ThoughtValidationSchema,
+    onSubmit: () => {
+      
+    }
+  });
 
   useEffect(() => {
     /**
@@ -74,21 +91,7 @@ const EntryForm: React.FC<EntryFormProps> = ({
       Keyboard.dismiss();
     }
   }, [open]);
-
-  /**
-   * Saves the current entries by adding a new entry with the given title,
-   * description, and current date to the list of entries. It then clears
-   * the title and description fields.
-   *
-   * @return {void}
-   */
-  const onSave = () => {
-    const date = new Date();
-    setEntries([...entries, { title, description, date }]);
-    setTitle("");
-    setDescription("");
-  };
-
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : null}
@@ -101,14 +104,15 @@ const EntryForm: React.FC<EntryFormProps> = ({
               <TextInput
                 mode="outlined"
                 label="Title"
-                value={title}
+                value={formik.values.title}
                 onChangeText={setTitle}
                 style={styles.input}
               />
+              {}
               <TextInput
                 mode="outlined"
                 label="Description"
-                value={description}
+                value={formik.values.}
                 onChangeText={setDescription}
                 multiline
                 style={styles.input}
@@ -148,7 +152,7 @@ type Styles = {
   saveButton: ViewStyle;
   closeButton: ViewStyle;
   buttonLabel: ViewStyle;
-}
+};
 const styles = StyleSheet.create<Styles>({
   keyboardAvoidingView: {
     flex: 1,
