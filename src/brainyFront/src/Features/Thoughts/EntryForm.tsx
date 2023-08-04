@@ -44,22 +44,25 @@ const EntryForm: React.FC<EntryFormProps> = ({
   //need a props object to secify these props
   open,
   formOpacity,
-  entries,
-  setEntries,
+  // entries,
+  // setEntries,
   handleFabPress,
 }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
   const [formWidth, setFormWidth] = useState(
     Dimensions.get("window").width * 0.9
   );
 
   const formik = useFormik({
-    initialValues: { title: "", description: "", date: new Date() },
+    initialValues: {
+      title: "",
+      content: "",
+      date: new Date(),
+      status: ThoughtsStatus.NEUTRAL,
+    },
     validationSchema: ThoughtValidationSchema,
-    onSubmit: () => {
-      
-    }
+    onSubmit: () => {},
   });
 
   useEffect(() => {
@@ -91,7 +94,7 @@ const EntryForm: React.FC<EntryFormProps> = ({
       Keyboard.dismiss();
     }
   }, [open]);
-  
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : null}
@@ -112,7 +115,7 @@ const EntryForm: React.FC<EntryFormProps> = ({
               <TextInput
                 mode="outlined"
                 label="Description"
-                value={formik.values.}
+                value={formik.values.content}
                 onChangeText={setDescription}
                 multiline
                 style={styles.input}
