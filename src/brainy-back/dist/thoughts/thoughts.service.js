@@ -37,11 +37,18 @@ let ThoughtsService = exports.ThoughtsService = class ThoughtsService {
     update(id, updateThoughtDto) {
         const thought = this.thoughts.find((thought) => thought.id === id);
         if (thought) {
-            thought.title = updateThoughtDto.title;
-            thought.date = updateThoughtDto.date;
-            thought.content = updateThoughtDto.content;
-            thought.status = updateThoughtDto.status;
-            this.thoughts.push(thought);
+            if (updateThoughtDto.title) {
+                thought.title = updateThoughtDto.title;
+            }
+            if (updateThoughtDto.date) {
+                thought.date = updateThoughtDto.date;
+            }
+            if (updateThoughtDto.content) {
+                thought.content = updateThoughtDto.content;
+            }
+            if (updateThoughtDto.status) {
+                thought.status = updateThoughtDto.status;
+            }
         }
         return thought;
     }
