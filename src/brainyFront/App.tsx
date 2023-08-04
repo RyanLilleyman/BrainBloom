@@ -4,10 +4,10 @@ import { createStackNavigator } from "@react-navigation/stack"; //
 import { StatusBar } from "expo-status-bar"; //
 import * as reactNativePaper from "react-native-paper";
 
-import SignIn1 from "./src/SignIn/SignInView";
-import LoadingScreen from "./src/Loading/LoadingLogoView";
-import SignupForm from "./src/SignUp/SignUpView";
-import MainView from "./src/MainPage/MainPageView";
+import SignIn1 from "./src/Features/SignIn/SignInView";
+import LoadingScreen from "./src/Features/Loading/LoadingLogoView";
+import SignupForm from "./src/Features/SignUp/SignUpView";
+import MainView from "./src/Features/MainPage/MainPageView";
 
 const Stack = createStackNavigator(); //
 /**

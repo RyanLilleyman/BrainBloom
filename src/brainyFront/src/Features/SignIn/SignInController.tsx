@@ -7,14 +7,14 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import Separator from "../Components/Separator";
-import { Colors, Sizes } from "../Components/Separator";
+import Separator from "../../Components/Separator";
+import { Colors, Sizes } from "../../Components/Separator";
 import { TextInput } from "react-native-paper";
 import { SignInValidationSchema } from "./SignInValidation";
 import { useFormik } from "formik";
-import { UserModel } from "../User/UserModel";
-import { UserDto } from "../User/UserDto";
-import MainView from "../MainPage/MainPageView";
+import { UserModel } from "../../Services/User/UserModel";
+import { UserDto } from "../../Services/User/UserDto";
+import MainView from "../../Features/MainPage/MainPageView";
 
 export interface SignInProps {
   navigation: any;

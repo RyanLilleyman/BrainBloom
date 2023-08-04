@@ -10,10 +10,10 @@ import {
 import { SignUpValidationSchema } from "./SIgnUpValidation";
 import { useFormik } from "formik";
 import { TextInput } from "react-native-paper";
-import Separator from "../Components/Separator";
-import { Colors, Sizes } from "../Components/Separator";
-import { UserModel } from "../User/UserModel";
-import { UserDto } from "../User/UserDto";
+import Separator from "../../Components/Separator";
+import { Colors, Sizes } from "../../Components/Separator";
+import { UserModel } from "../../Services/User/UserModel";
+import { UserDto } from "../../Services/User/UserDto";
 
 interface SignUpProps {
   navigation: any;
