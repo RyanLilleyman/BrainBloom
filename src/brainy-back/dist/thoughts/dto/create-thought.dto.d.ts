@@ -3,6 +3,7 @@ export declare class CreateThoughtDto {
     title: string;
     date: string;
     content: string;
+    status: ThoughtsStatus;
 }
 export declare enum ThoughtsStatus {
     WORRY = "WORRYING",

@@ -3,6 +3,7 @@ export class CreateThoughtDto {
   title: string;
   date: string;
   content: string;
+  status: ThoughtsStatus;
 }
 
 export enum ThoughtsStatus {

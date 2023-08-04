@@ -33,6 +33,17 @@ export class ThoughtsController {
   findOne(@Param('id') id: string) {
     return this.thoughtsService.findOne(id);
   }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.thoughtsService.remove(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateThoughtDto: UpdateThoughtDto) {
+    return this.thoughtsService.update(id, updateThoughtDto);
+  }
+
   // create(@Body() createThoughtDto: CreateThoughtDto) {
   //   return this.thoughtsService.create(createThoughtDto);
   // }

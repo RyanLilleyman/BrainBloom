@@ -33,6 +33,18 @@ export class ThoughtsService {
     this.thoughts = this.thoughts.filter((thought) => thought.id !== id);
   }
 
+  update(id: string, updateThoughtDto: UpdateThoughtDto): Thought {
+    const thought = this.thoughts.find((thought) => thought.id === id);
+    if (thought) {
+      thought.title = updateThoughtDto.title;
+      thought.date = updateThoughtDto.date;
+      thought.content = updateThoughtDto.content;
+      thought.status = updateThoughtDto.status;
+      this.thoughts.push(thought);
+    }
+    return thought;
+  }
+
   // constructor(thoughts: CreateThoughtDto[]) {}
   // create(createThoughtDto: CreateThoughtDto) {
   //   return 'This action adds a new thought';
