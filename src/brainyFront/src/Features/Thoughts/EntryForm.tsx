@@ -25,10 +25,10 @@ type Entry = {
   date: string;
 };
 interface EntryFormProps {
-  open: boolean;
+  // open: boolean;
   formOpacity: Animated.Value;
-  entries: Array<Entry>;
-  setEntries: Function;
+  // entries: Array<Entry>;
+  // setEntries: Function;
   handleFabPress: Function;
 }
 
@@ -44,7 +44,7 @@ interface EntryFormProps {
  * @return {ReactElement} The rendered entry form component.
  */
 const EntryForm: React.FC<EntryFormProps> = ({
-  open,
+  // open,
   formOpacity,
   // entries,
   // setEntries,
@@ -63,8 +63,18 @@ const EntryForm: React.FC<EntryFormProps> = ({
     },
     validationSchema: ThoughtValidationSchema,
     onSubmit: (values: ThoughtDto) => {
-      console.log(values);
+      ThoughtModel.createThought(values)
+        .then(response => {
+          console.log(response.data);
+          formik.resetForm(); // Clear the form.
+          // Handle the successful form submission.
+        })
+        .catch(error => {
+          console.log(error);
+          // Handle the failed form submission.
+        });
     },
+    
   });
 
   useEffect(() => {
@@ -91,11 +101,11 @@ const EntryForm: React.FC<EntryFormProps> = ({
     };
   }, []);
 
-  React.useEffect(() => {
-    if (!open) {
-      Keyboard.dismiss();
-    }
-  }, [open]);
+  // React.useEffect(() => {
+  //   if (!open) {
+  //     Keyboard.dismiss();
+  //   }
+  // }, [open]);
   //need to implement response error below buttons
   return (
     <KeyboardAvoidingView

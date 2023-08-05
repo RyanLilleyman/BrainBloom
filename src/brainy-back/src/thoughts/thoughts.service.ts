@@ -2,20 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { CreateThoughtDto } from './dto/create-thought.dto';
 import { UpdateThoughtDto } from './dto/update-thought.dto';
 import { Thought } from './thought.model';
-import { ThoughtsStatus } from './dto/create-thought.dto';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class ThoughtsService {
   private thoughts: Thought[] = [];
 
-  createThought(title: string, date: string, content: string): Thought {
+  createThought(createThought: CreateThoughtDto): Thought {
     const thought = {
       id: uuid(),
-      title,
-      date,
-      content,
-      status: ThoughtsStatus.NEUTRAL,
+      title: createThought.title,
+      date: createThought.date,
+      content: createThought.content,
+      status: createThought.status,
     };
     this.thoughts.push(thought);
     return thought;

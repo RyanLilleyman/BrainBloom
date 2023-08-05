@@ -1,7 +1,7 @@
 export declare class CreateThoughtDto {
     id: number;
     title: string;
-    date: string;
+    date: Date;
     content: string;
     status: ThoughtsStatus;
 }

@@ -8,19 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThoughtsService = void 0;
 const common_1 = require("@nestjs/common");
-const create_thought_dto_1 = require("./dto/create-thought.dto");
 const uuid_1 = require("uuid");
 let ThoughtsService = exports.ThoughtsService = class ThoughtsService {
     constructor() {
         this.thoughts = [];
     }
-    createThought(title, date, content) {
+    createThought(createThought) {
         const thought = {
             id: (0, uuid_1.v4)(),
-            title,
-            date,
-            content,
-            status: create_thought_dto_1.ThoughtsStatus.NEUTRAL,
+            title: createThought.title,
+            date: createThought.date,
+            content: createThought.content,
+            status: createThought.status,
         };
         this.thoughts.push(thought);
         return thought;

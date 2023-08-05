@@ -16,12 +16,8 @@ export class ThoughtsController {
   constructor(private readonly thoughtsService: ThoughtsService) {}
 
   @Post()
-  createThought(
-    @Body('title') title: string,
-    @Body('date') date: string,
-    @Body('content') content: string,
-  ) {
-    return this.thoughtsService.createThought(title, date, content);
+  createThought(@Body() createThoughtDto: CreateThoughtDto) {
+    return this.thoughtsService.createThought(createThoughtDto);
   }
 
   @Get()

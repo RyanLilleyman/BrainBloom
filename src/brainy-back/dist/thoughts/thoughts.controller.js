@@ -15,13 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThoughtsController = void 0;
 const common_1 = require("@nestjs/common");
 const thoughts_service_1 = require("./thoughts.service");
+const create_thought_dto_1 = require("./dto/create-thought.dto");
 const update_thought_dto_1 = require("./dto/update-thought.dto");
 let ThoughtsController = exports.ThoughtsController = class ThoughtsController {
     constructor(thoughtsService) {
         this.thoughtsService = thoughtsService;
     }
-    createThought(title, date, content) {
-        return this.thoughtsService.createThought(title, date, content);
+    createThought(createThoughtDto) {
+        return this.thoughtsService.createThought(createThoughtDto);
     }
     findAll() {
         return this.thoughtsService.findAll();
@@ -38,11 +39,9 @@ let ThoughtsController = exports.ThoughtsController = class ThoughtsController {
 };
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)('title')),
-    __param(1, (0, common_1.Body)('date')),
-    __param(2, (0, common_1.Body)('content')),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [create_thought_dto_1.CreateThoughtDto]),
     __metadata("design:returntype", void 0)
 ], ThoughtsController.prototype, "createThought", null);
 __decorate([
