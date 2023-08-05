@@ -110,8 +110,10 @@ const EntryForm: React.FC<EntryFormProps> = ({
                 mode="outlined"
                 label="Title"
                 value={formik.values.title}
-                onChangeText={formik.handleChange("title")}
-                style={styles.input}
+                onChangeText={(text) => {
+                  formik.setFieldValue("title", text);
+                }}
+                style={[styles.input, styles.fontSize]}
               />
               {formik.errors.title && (
                 <Text style={styles.checkText}>{formik.errors.title}</Text>
@@ -120,7 +122,9 @@ const EntryForm: React.FC<EntryFormProps> = ({
                 mode="outlined"
                 label="Description"
                 value={formik.values.content}
-                onChangeText={formik.handleChange("content")}
+                onChangeText={(text) => {
+                  formik.setFieldValue("content", text);
+                }}
                 multiline
                 style={styles.input}
               />
@@ -167,6 +171,7 @@ type Styles = {
   closeButton: ViewStyle;
   buttonLabel: ViewStyle;
   checkText: TextStyle;
+  fontSize: TextStyle;
 };
 const styles = StyleSheet.create<Styles>({
   keyboardAvoidingView: {
@@ -216,6 +221,11 @@ const styles = StyleSheet.create<Styles>({
     color: "#000000",
     fontSize: 12,
     marginBottom: 5,
+  },
+  fontSize: {
+    fontSize: 18,
+    textAlign: "auto",
+    color: "#000000",
   },
 });
 
