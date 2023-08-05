@@ -134,6 +134,7 @@ const Attention: React.FC<AttentionProps> = ({
       padding: 10,
     },
     text: {
+      textAlign: "center",
       fontSize: 18,
       fontWeight: "bold",
       color: "#333",

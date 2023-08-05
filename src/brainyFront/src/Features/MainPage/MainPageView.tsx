@@ -5,6 +5,7 @@ import Attention from "../Attention/AttentionView";
 import Thoughts from "../Thoughts/Thoughts";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+
 const MainView: React.FC = () => {
   const [index, setIndex] = React.useState(0);
   const [soundIndex, setSoundIndex] = useState<number>(0);
@@ -12,11 +13,13 @@ const MainView: React.FC = () => {
   const [isPlay, setPlay] = useState<boolean>(false);
 
   const pathArray: AVPlaybackSource[] = [
-    { uri: require("../../Audio/aud1.mp3") },
-    { uri: require("../../Audio/aud2.mp3") },
-    { uri: require("../../Audio/aud3.mp3") },
-    { uri: require("../../Audio/aud4.mp3") },
-  ];
+    require("../../Audio/aud1.aac"),
+    require("../../Audio/aud2.aac"),
+    require("../../Audio/aud3.mp3"),
+    require("../../Audio/aud4.mp3"),
+];
+
+  
 
   useEffect(() => {
     return () => {
