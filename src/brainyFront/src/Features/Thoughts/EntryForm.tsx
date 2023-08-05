@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text, 
+  Text,
   Animated,
   StyleSheet,
   Keyboard,
@@ -184,6 +184,7 @@ const styles = StyleSheet.create<Styles>({
     marginBottom: 50,
     borderColor: "black",
     borderWidth: 0.5,
+    maxWidth: 400,
   },
   input: {
     marginBottom: 10,
@@ -211,7 +212,10 @@ const styles = StyleSheet.create<Styles>({
     color: "#F5F5F5",
   },
   checkText: {
-    color: "#F5F5F5",
+    alignSelf: "center",
+    color: "#000000",
+    fontSize: 12,
+    marginBottom: 5,
   },
 });
 
