@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
+  Text, 
   Animated,
   StyleSheet,
   Keyboard,
@@ -9,10 +10,12 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   ViewStyle,
+  TextStyle,
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { ThoughtValidationSchema } from "./ThoughtValidation";
 import { ThoughtModel } from "../../Services/ThoughtsService/ThoughtModel";
+import { ThoughtDto } from "../../Services/ThoughtsService/ThoughtDto";
 import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
 import { useFormik } from "formik";
 
@@ -41,15 +44,12 @@ interface EntryFormProps {
  * @return {ReactElement} The rendered entry form component.
  */
 const EntryForm: React.FC<EntryFormProps> = ({
-  //need a props object to secify these props
   open,
   formOpacity,
   // entries,
   // setEntries,
   handleFabPress,
 }) => {
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
   const [formWidth, setFormWidth] = useState(
     Dimensions.get("window").width * 0.9
   );
@@ -62,7 +62,9 @@ const EntryForm: React.FC<EntryFormProps> = ({
       status: ThoughtsStatus.NEUTRAL,
     },
     validationSchema: ThoughtValidationSchema,
-    onSubmit: () => {},
+    onSubmit: (values: ThoughtDto) => {
+      console.log(values);
+    },
   });
 
   useEffect(() => {
@@ -94,10 +96,10 @@ const EntryForm: React.FC<EntryFormProps> = ({
       Keyboard.dismiss();
     }
   }, [open]);
-
+  //need to implement response error below buttons
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : null}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.keyboardAvoidingView}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -108,22 +110,29 @@ const EntryForm: React.FC<EntryFormProps> = ({
                 mode="outlined"
                 label="Title"
                 value={formik.values.title}
-                onChangeText={setTitle}
+                onChangeText={formik.handleChange("title")}
                 style={styles.input}
               />
-              {}
+              {formik.errors.title && (
+                <Text style={styles.checkText}>{formik.errors.title}</Text>
+              )}
               <TextInput
                 mode="outlined"
                 label="Description"
                 value={formik.values.content}
-                onChangeText={setDescription}
+                onChangeText={formik.handleChange("content")}
                 multiline
                 style={styles.input}
               />
+              {formik.errors.content && (
+                <Text style={styles.checkText}>{formik.errors.content}</Text>
+              )}
               <View style={styles.buttonContainer}>
                 <Button
                   mode="contained"
-                  onPress={onSave}
+                  onPress={() => {
+                    formik.handleSubmit();
+                  }}
                   style={styles.saveButton}
                   labelStyle={styles.buttonLabel}
                 >
@@ -131,7 +140,9 @@ const EntryForm: React.FC<EntryFormProps> = ({
                 </Button>
                 <Button
                   mode="contained"
-                  onPress={handleFabPress}
+                  onPress={() => {
+                    handleFabPress();
+                  }}
                   style={styles.closeButton}
                   labelStyle={styles.buttonLabel}
                 >
@@ -155,6 +166,7 @@ type Styles = {
   saveButton: ViewStyle;
   closeButton: ViewStyle;
   buttonLabel: ViewStyle;
+  checkText: TextStyle;
 };
 const styles = StyleSheet.create<Styles>({
   keyboardAvoidingView: {
@@ -196,6 +208,9 @@ const styles = StyleSheet.create<Styles>({
   buttonLabel: {
     fontWeight: "bold",
     fontSize: 18,
+    color: "#F5F5F5",
+  },
+  checkText: {
     color: "#F5F5F5",
   },
 });

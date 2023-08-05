@@ -12,10 +12,10 @@ const MainView: React.FC = () => {
   const [isPlay, setPlay] = useState<boolean>(false);
 
   const pathArray: AVPlaybackSource[] = [
-    { uri: require("../Audio/aud1.mp3") },
-    { uri: require("../Audio/aud2.mp3") },
-    { uri: require("../Audio/aud3.mp3") },
-    { uri: require("../Audio/aud4.mp3") },
+    { uri: require("../../Audio/aud1.mp3") },
+    { uri: require("../../Audio/aud2.mp3") },
+    { uri: require("../../Audio/aud3.mp3") },
+    { uri: require("../../Audio/aud4.mp3") },
   ];
 
   useEffect(() => {
