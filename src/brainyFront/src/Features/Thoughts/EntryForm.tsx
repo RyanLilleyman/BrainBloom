@@ -18,6 +18,8 @@ import { ThoughtModel } from "../../Services/ThoughtsService/ThoughtModel";
 import { ThoughtDto } from "../../Services/ThoughtsService/ThoughtDto";
 import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
 import { useFormik } from "formik";
+import AnimatedPicker from "./AnimatedPicker";
+import RNPickerSelect from "react-native-picker-select";
 
 type Entry = {
   title: string;
@@ -64,17 +66,16 @@ const EntryForm: React.FC<EntryFormProps> = ({
     validationSchema: ThoughtValidationSchema,
     onSubmit: (values: ThoughtDto) => {
       ThoughtModel.createThought(values)
-        .then(response => {
+        .then((response) => {
           console.log(response.data);
           formik.resetForm(); // Clear the form.
           // Handle the successful form submission.
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           // Handle the failed form submission.
         });
     },
-    
   });
 
   useEffect(() => {
@@ -141,6 +142,15 @@ const EntryForm: React.FC<EntryFormProps> = ({
               {formik.errors.content && (
                 <Text style={styles.checkText}>{formik.errors.content}</Text>
               )}
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  paddingVertical: 5,
+                }}
+              >
+                <AnimatedPicker />
+              </View>
               <View style={styles.buttonContainer}>
                 <Button
                   mode="contained"
