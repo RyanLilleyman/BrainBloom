@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ThoughtsView from "./ThoughtsView";
 import { Animated } from "react-native";
+import { Entry } from "./EntryForm";
 
 const Thoughts: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [entries, setEntries] = useState<object[]>([]);
+  const [entries, setEntries] = useState<Entry[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const formOpacity: Animated.Value = useRef(new Animated.Value(0)).current;
+
 
   const handleFabPress = () => {
     setOpen(!open);

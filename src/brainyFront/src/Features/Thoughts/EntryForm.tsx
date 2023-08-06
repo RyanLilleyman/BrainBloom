@@ -14,22 +14,24 @@ import {
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { ThoughtValidationSchema } from "./ThoughtValidation";
-import { ThoughtModel } from "../../Services/ThoughtsService/ThoughtModel";
+import  ThoughtModel  from "../../Services/ThoughtsService/ThoughtModel";
 import { ThoughtDto } from "../../Services/ThoughtsService/ThoughtDto";
 import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
 import { useFormik } from "formik";
 import RNPickerSelect from "react-native-picker-select";
 
-type Entry = {
+export type Entry = {
+  id: string;
   title: string;
-  description: string;
+  content: string;
   date: string;
+  status: ThoughtsStatus;
 };
 interface EntryFormProps {
   // open: boolean;
   formOpacity: Animated.Value;
-  // entries: Array<Entry>;
-  // setEntries: Function;
+  entries: Array<Entry>;
+  setEntries: Function;
   handleFabPress: Function;
 }
 
@@ -47,8 +49,8 @@ interface EntryFormProps {
 const EntryForm: React.FC<EntryFormProps> = ({
   // open,
   formOpacity,
-  // entries,
-  // setEntries,
+  entries,
+  setEntries,
   handleFabPress,
 }) => {
   const [formWidth, setFormWidth] = useState(
@@ -67,8 +69,22 @@ const EntryForm: React.FC<EntryFormProps> = ({
       ThoughtModel.createThought(values)
         .then((response) => {
           console.log(response.data);
-          formik.resetForm(); // Clear the form.
-          // Handle the successful form submission.
+          formik.resetForm();
+          ThoughtModel.getThoughts().then((thoughts) => {
+            const data = thoughts.data.map((entry: Entry) => {
+              return {
+                id: entry.id,
+                title: entry.title,
+                content: entry.content,
+                date: entry.date,
+                status: entry.status,
+              };
+            });
+            // setEntries(thoughts.data);
+            console.log(thoughts.data);
+            console.log(data);
+            setEntries(data);
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -148,7 +164,8 @@ const EntryForm: React.FC<EntryFormProps> = ({
               }}
             >
               <RNPickerSelect
-                placeholder={{ label: "Thought Pattern...", value: '2' }}
+                onBlur={() => formik.setFieldTouched("status")}
+                placeholder={{ label: "Thought Pattern...", value: "" }}
                 onValueChange={(value) => formik.setFieldValue("status", value)}
                 items={[
                   { label: "Worrying", value: ThoughtsStatus.WORRY },
@@ -188,7 +205,7 @@ const EntryForm: React.FC<EntryFormProps> = ({
                   },
                 }}
               />
-              {formik.errors.status && (
+              {formik.touched.status && formik.errors.status && (
                 <Text style={styles.checkText}>{formik.errors.status}</Text>
               )}
             </View>

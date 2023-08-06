@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
+import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
+import ThoughtModel from "../../Services/ThoughtsService/ThoughtModel";
+import { Entry } from "./EntryForm";
 
 
 interface EntryListViewProps {
-  entries: object[];
+  entries: Entry[];
   searchQuery: string;
   setEntries: (entries: object[]) => void;
 }
@@ -11,7 +14,31 @@ interface EntryListViewProps {
 const EntryListView: React.FC<EntryListViewProps> = ({ entries, searchQuery, setEntries }) => {
   //implement useEffect to wait for the changes wthin the entries and queries and
   //fetch all entries from the database each time. actally that would be a waste of time
+
+  useEffect(() => {
+    ThoughtModel.getThoughts().then((thoughts) => {
+      const data = thoughts.data.map((entry: Entry) => {
+        return {
+          id: entry.id,
+          title: entry.title,
+          content: entry.content,
+          date: entry.date,
+          status: entry.status,
+        };
+      });
+      // setEntries(thoughts.data);
+      console.log(thoughts.data);
+      console.log(data);
+      setEntries(data);
+    });
+  }, []);
   const onDelete = (index: number) => {
+    console.log(index);
+    console.log(entries[index].id);
+    ThoughtModel.deleteThought(entries[index].id)
+      .then((response) => {
+        console.log(response.data);
+      });
     setEntries(entries.filter((_, idx) => idx !== index));
   };
   const filteredEntries = entries.filter((entry) => {
@@ -32,7 +59,7 @@ const EntryListView: React.FC<EntryListViewProps> = ({ entries, searchQuery, set
               <Text style={styles.title}>{entry.title}</Text>
             </View>
             <Text style={styles.date}>{entry.date.toLocaleString()}</Text>
-            <Text style={styles.description}>{entry.description}</Text>
+            <Text style={styles.description}>{entry.content}</Text>
             <Button title="Delete" onPress={() => onDelete(index)} />
           </View>
         ))

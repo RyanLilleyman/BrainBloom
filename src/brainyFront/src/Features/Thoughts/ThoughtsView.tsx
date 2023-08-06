@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -10,7 +10,8 @@ import {
 import { FAB, Searchbar } from "react-native-paper";
 import EntryListView from "./EntryListView";
 import EntryForm from "./EntryForm";
-
+import ThoughtModel from "../../Services/ThoughtsService/ThoughtModel";
+import { Entry } from "./EntryForm";
 /**
  * Handles the press event of the FAB (Floating Action Button).
  *
@@ -79,7 +80,7 @@ const ThoughtsView = () => {
             icon={open ? "close" : "plus"}
             onPress={handleFabPress}
             style={styles.fab}
-            color="black" // Set the plus icon color to black
+            color="black" 
           />
         </TouchableOpacity>
       </View>
