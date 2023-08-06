@@ -147,9 +147,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 24,
-    marginVertical: 5,
-    color: "#004d66",
+    flex: 1,
   },
   date: {
     fontStyle: "italic",
@@ -158,62 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   description: {
-    width: "100%",
-    fontSize: 16,
-    color: "#333",
-    lineHeight: 20,
-    marginBottom: 5,
-    padding: 5,
-    borderRadius: 4,
-    backgroundColor: "rgba(230, 230, 230, 0.7)",
-  },
-  statusContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    height: 45,
-  },
-
-  pickerStyle: {
-    flex: 1,
-    borderWidth: 0.5,
-    borderColor: "gray",
-    borderRadius: 4,
-    marginRight: 8,
-    height: "100%",
-    backgroundColor: "#F5F5F5",
-  },
-
-  button: {
-    flex: 1,
-    backgroundColor: "#007B83",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 3,
-    padding: 8,
-    borderRadius: 5,
-    height: "100%",
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 4,
-    // },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 4,
-    // elevation: 8,
-  },
-  buttonText: {
-    fontSize: 16,
-    color: "#F5F5F5",
-  },
-  separator: {
-    width: "100%",
-    marginVertical: 2,
-    color: "#DDD",
-    borderBottomColor: "#DDD",
-    borderBottomWidth: 0.5,
+    fontStyle: "italic",
   },
 });
 
