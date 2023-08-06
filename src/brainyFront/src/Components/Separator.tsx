@@ -37,7 +37,7 @@ const Separator: React.FC<Props> = ({ label, color, fontSize }) => {
       width: "15%",
       height: 1,
       backgroundColor: color,
-      marginHorizontal: 10,
+      marginHorizontal: 5,
     },
     Label: {
       textAlign: "center",

@@ -60,9 +60,16 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       alignItems: "center",
       padding: 20,
       borderRadius: 10,
+      shadowColor: "#000", // Adding shadows for a more elevated look
+      shadowOffset: {
+        width: 2,
+        height: 5,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
     },
     button: {
-      backgroundColor: "#00c1bd", //#03363D
+      backgroundColor: "#008a95", //#03363D
       width: 200,
       padding: 10,
       margin: 10,
@@ -145,7 +152,7 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       >
         <Text style={styles.text}>Sign In</Text>
       </TouchableOpacity>
-      <Separator label="Or" color={Colors.White} fontSize={Sizes.Large} />
+      <Separator label="or" color={Colors.White} fontSize={Sizes.Large} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate("SignUpForm")}

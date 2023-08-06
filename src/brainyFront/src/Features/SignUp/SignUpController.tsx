@@ -76,7 +76,7 @@ const SignUpFormController: React.FC<SignUpProps> = ({ navigation }) => {
     },
     button: {
       width: 150,
-      backgroundColor: "#00c1bd",
+      backgroundColor: "#008a95",
       marginVertical: 10,
       marginHorizontal: 10,
       borderRadius: 10,

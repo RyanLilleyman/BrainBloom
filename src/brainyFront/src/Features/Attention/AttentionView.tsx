@@ -106,6 +106,14 @@ const Attention: React.FC<AttentionProps> = ({
       flexGrow: 1,
       textAlign: "center",
       borderRadius: 5,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 2,
+      elevation: 4,
     },
     buttonsContainer: {
       width: "90%",
@@ -121,7 +129,7 @@ const Attention: React.FC<AttentionProps> = ({
       padding: 20,
     },
     button: {
-      backgroundColor: "#00c1bd",
+      backgroundColor: "#007B83",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -132,6 +140,14 @@ const Attention: React.FC<AttentionProps> = ({
       borderWidth: 1,
       flex: 1,
       padding: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 2,
+      elevation: 4,
     },
     text: {
       textAlign: "center",

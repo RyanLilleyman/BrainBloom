@@ -267,6 +267,13 @@ const styles = StyleSheet.create<Styles>({
     borderColor: "black",
     borderWidth: 0.5,
     maxWidth: 400,
+    shadowColor: "#000", // Adding shadows for a more elevated look
+    shadowOffset: {
+      width: 1,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   input: {
     marginBottom: 10,
@@ -279,13 +286,13 @@ const styles = StyleSheet.create<Styles>({
   saveButton: {
     flex: 1,
     marginRight: 5,
-    backgroundColor: "#00c1bd",
+    backgroundColor: "#007B83",
     elevation: 1,
   },
   closeButton: {
     flex: 1,
     marginLeft: 5,
-    backgroundColor: "#00c1bd",
+    backgroundColor: "#007B83",
     elevation: 1,
   },
   buttonLabel: {

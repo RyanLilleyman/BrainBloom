@@ -80,7 +80,7 @@ const ThoughtsView = () => {
             icon={open ? "close" : "plus"}
             onPress={handleFabPress}
             style={styles.fab}
-            color="black" 
+            color="black"
           />
         </TouchableOpacity>
       </View>
@@ -99,11 +99,19 @@ const styles = StyleSheet.create({
   searchBarContainer: {
     backgroundColor: "rgba(173, 227, 226, 1)",
     padding: 10,
+
   },
   searchBar: {
     borderRadius: 25,
     backgroundColor: "#F5F5F5",
     elevation: 4,
+    shadowColor: "#000", // Adding shadows for a more elevated look
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   scrollView: {
     flex: 1,
@@ -120,6 +128,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 28,
     overflow: "hidden",
+    shadowColor: "#000", // Adding shadows for a more elevated look
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   fab: {
     backgroundColor: "#F5F5F5",
