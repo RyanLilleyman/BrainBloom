@@ -18,7 +18,6 @@ import { ThoughtModel } from "../../Services/ThoughtsService/ThoughtModel";
 import { ThoughtDto } from "../../Services/ThoughtsService/ThoughtDto";
 import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
 import { useFormik } from "formik";
-import AnimatedPicker from "./AnimatedPicker";
 import RNPickerSelect from "react-native-picker-select";
 
 type Entry = {
@@ -113,70 +112,111 @@ const EntryForm: React.FC<EntryFormProps> = ({
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.keyboardAvoidingView}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <View style={[styles.formContainer, { width: formWidth }]}>
-            <Animated.View style={{ opacity: formOpacity }}>
-              <TextInput
-                mode="outlined"
-                label="Title"
-                value={formik.values.title}
-                onChangeText={(text) => {
-                  formik.setFieldValue("title", text);
-                }}
-                style={[styles.input, styles.fontSize]}
-              />
-              {formik.errors.title && (
-                <Text style={styles.checkText}>{formik.errors.title}</Text>
-              )}
-              <TextInput
-                mode="outlined"
-                label="Description"
-                value={formik.values.content}
-                onChangeText={(text) => {
-                  formik.setFieldValue("content", text);
-                }}
-                multiline
-                style={styles.input}
-              />
-              {formik.errors.content && (
-                <Text style={styles.checkText}>{formik.errors.content}</Text>
-              )}
-              <View
+      <View style={styles.container}>
+        <View style={[styles.formContainer, { width: formWidth }]}>
+          <Animated.View style={{ opacity: formOpacity }}>
+            <TextInput
+              mode="outlined"
+              label="Title"
+              value={formik.values.title}
+              onChangeText={(text) => {
+                formik.setFieldValue("title", text);
+              }}
+              style={[styles.input, styles.fontSize]}
+            />
+            {formik.errors.title && (
+              <Text style={styles.checkText}>{formik.errors.title}</Text>
+            )}
+            <TextInput
+              mode="outlined"
+              label="Description"
+              value={formik.values.content}
+              onChangeText={(text) => {
+                formik.setFieldValue("content", text);
+              }}
+              multiline
+              style={styles.input}
+            />
+            {formik.errors.content && (
+              <Text style={styles.checkText}>{formik.errors.content}</Text>
+            )}
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                paddingVertical: 5,
+              }}
+            >
+              <RNPickerSelect
+                placeholder={{ label: "Thought Pattern...", value: '2' }}
+                onValueChange={(value) => formik.setFieldValue("status", value)}
+                items={[
+                  { label: "Worrying", value: ThoughtsStatus.WORRY },
+                  { label: "Ruminating", value: ThoughtsStatus.RUMINATE },
+                  { label: "Neutral", value: ThoughtsStatus.NEUTRAL },
+                ]}
                 style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  paddingVertical: 5,
+                  inputIOS: {
+                    color: "black",
+                    paddingTop: 13,
+                    paddingHorizontal: 10,
+                    paddingBottom: 12,
+                    borderWidth: 0.5,
+                    borderColor: "gray",
+                    borderRadius: 4,
+                    backgroundColor: "white",
+                  },
+                  inputAndroid: {
+                    color: "black",
+                    paddingTop: 13,
+                    paddingHorizontal: 10,
+                    paddingBottom: 12,
+                    borderWidth: 0.5,
+                    borderColor: "gray",
+                    borderRadius: 4,
+                    backgroundColor: "white",
+                  },
+                  inputWeb: {
+                    color: "black",
+                    paddingTop: 13,
+                    paddingHorizontal: 10,
+                    paddingBottom: 12,
+                    borderWidth: 0.5,
+                    borderColor: "gray",
+                    borderRadius: 4,
+                    backgroundColor: "white",
+                  },
                 }}
+              />
+              {formik.errors.status && (
+                <Text style={styles.checkText}>{formik.errors.status}</Text>
+              )}
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                mode="contained"
+                onPress={() => {
+                  formik.handleSubmit();
+                }}
+                style={styles.saveButton}
+                labelStyle={styles.buttonLabel}
               >
-                <AnimatedPicker />
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button
-                  mode="contained"
-                  onPress={() => {
-                    formik.handleSubmit();
-                  }}
-                  style={styles.saveButton}
-                  labelStyle={styles.buttonLabel}
-                >
-                  Save
-                </Button>
-                <Button
-                  mode="contained"
-                  onPress={() => {
-                    handleFabPress();
-                  }}
-                  style={styles.closeButton}
-                  labelStyle={styles.buttonLabel}
-                >
-                  Close
-                </Button>
-              </View>
-            </Animated.View>
-          </View>
+                Save
+              </Button>
+              <Button
+                mode="contained"
+                onPress={() => {
+                  handleFabPress();
+                }}
+                style={styles.closeButton}
+                labelStyle={styles.buttonLabel}
+              >
+                Close
+              </Button>
+            </View>
+          </Animated.View>
         </View>
-      </TouchableWithoutFeedback>
+      </View>
     </KeyboardAvoidingView>
   );
 };
