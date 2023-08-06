@@ -60,6 +60,13 @@ export const SignInFormController1: React.FC<SignInProps> = ({
       alignItems: "center",
       padding: 20,
       borderRadius: 10,
+      shadowColor: "#000", // Adding shadows for a more elevated look
+      shadowOffset: {
+        width: 2,
+        height: 5,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
     },
     button: {
       backgroundColor: "#00c1bd", //#03363D
