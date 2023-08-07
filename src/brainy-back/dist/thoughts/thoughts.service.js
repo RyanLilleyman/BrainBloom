@@ -33,24 +33,6 @@ let ThoughtsService = exports.ThoughtsService = class ThoughtsService {
     remove(id) {
         this.thoughts = this.thoughts.filter((thought) => thought.id !== id);
     }
-    update(id, updateThoughtDto) {
-        const thought = this.thoughts.find((thought) => thought.id === id);
-        if (thought) {
-            if (updateThoughtDto.title) {
-                thought.title = updateThoughtDto.title;
-            }
-            if (updateThoughtDto.date) {
-                thought.date = updateThoughtDto.date;
-            }
-            if (updateThoughtDto.content) {
-                thought.content = updateThoughtDto.content;
-            }
-            if (updateThoughtDto.status) {
-                thought.status = updateThoughtDto.status;
-            }
-        }
-        return thought;
-    }
 };
 exports.ThoughtsService = ThoughtsService = __decorate([
     (0, common_1.Injectable)()

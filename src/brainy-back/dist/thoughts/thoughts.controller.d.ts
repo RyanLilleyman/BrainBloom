@@ -1,6 +1,5 @@
 import { ThoughtsService } from './thoughts.service';
 import { CreateThoughtDto } from './dto/create-thought.dto';
-import { UpdateThoughtDto } from './dto/update-thought.dto';
 export declare class ThoughtsController {
     private readonly thoughtsService;
     constructor(thoughtsService: ThoughtsService);
@@ -8,5 +7,4 @@ export declare class ThoughtsController {
     findAll(): import("./thought.model").Thought[];
     findOne(id: string): import("./thought.model").Thought;
     remove(id: string): void;
-    update(id: string, updateThoughtDto: UpdateThoughtDto): import("./thought.model").Thought;
 }

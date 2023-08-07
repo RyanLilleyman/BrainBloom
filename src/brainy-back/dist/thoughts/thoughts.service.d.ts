@@ -1,5 +1,4 @@
 import { CreateThoughtDto } from './dto/create-thought.dto';
-import { UpdateThoughtDto } from './dto/update-thought.dto';
 import { Thought } from './thought.model';
 export declare class ThoughtsService {
     private thoughts;
@@ -7,5 +6,4 @@ export declare class ThoughtsService {
     findAll(): Thought[];
     findOne(id: string): Thought;
     remove(id: string): void;
-    update(id: string, updateThoughtDto: UpdateThoughtDto): Thought;
 }

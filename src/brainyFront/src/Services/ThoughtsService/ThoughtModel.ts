@@ -12,10 +12,4 @@ export default class ThoughtModel {
   public static async deleteThought(id: string): Promise<any> {
     return await axios.delete(`http://localhost:3000/thoughts/${id}`);
   }
-
-  public static async updateThought(id: string, status:ThoughtsStatus): Promise<any> {
-    return await axios.patch(`http://localhost:3000/thoughts/${id}`, {
-      status: status
-    })
-  }
 }
