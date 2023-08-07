@@ -16,16 +16,16 @@ BrainBloom is a humble application meant to be a braindump for your thoughts. It
 1. Clone the repository. 
 2. Navigate to brainy-back/
 
-'''bash
+```bash
 yarn start:dev
-'''
+```
 
-3. Navigate to brainyFront/
-'''bash
+3. Navigate to brainyFront
+```bash
 yarn expo start
-'''
-4. Use device of your choice. Ios doesn't have working audio, the android emulator and the web app versions do.
-5. Enjoy!
+```
+5. Use device of your choice. Ios doesn't have working audio, the android emulator and the web app versions do.
+6. Enjoy!
 
 
 ## Contributing
