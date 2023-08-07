@@ -135,6 +135,8 @@ const EntryForm: React.FC<EntryFormProps> = ({
               mode="outlined"
               label="Title"
               value={formik.values.title}
+              multiline
+              
               onChangeText={(text) => {
                 formik.setFieldValue("title", text);
               }}
@@ -267,7 +269,7 @@ const styles = StyleSheet.create<Styles>({
     borderColor: "black",
     borderWidth: 0.5,
     maxWidth: 400,
-    shadowColor: "#000", // Adding shadows for a more elevated look
+    shadowColor: "#000", 
     shadowOffset: {
       width: 1,
       height: 5,
