@@ -6,12 +6,8 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { ThoughtsStatus } from "../../Services/ThoughtsService/ThoughtDto";
 import ThoughtModel from "../../Services/ThoughtsService/ThoughtModel";
 import { Entry } from "./EntryForm";
-import RNPickerSelect from "react-native-picker-select";
-import Separator from "../../Components/Separator";
-import { Colors, Sizes } from "../../Components/Separator";
 
 interface EntryListViewProps {
   entries: Entry[];
