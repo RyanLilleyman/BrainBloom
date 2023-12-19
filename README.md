@@ -9,7 +9,8 @@ BrainBloom is a humble application meant to be a braindump for your thoughts. It
 - Interactive thought records: Record and analyze your thoughts.
 - Attentional Training Technique.
 
-
+## Future Features 
+- Secure User Accounts (Current Auth is boiler plate).
 
 
 ### Installation
