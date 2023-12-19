@@ -8,7 +8,7 @@ BrainBloom is a humble application meant to be a braindump for your thoughts. It
 
 - Interactive thought records: Record and analyze your thoughts.
 - Attentional Training Technique.
-- Secure user accounts: Sign up and log in to track your progress
+
 
 
 
@@ -30,7 +30,7 @@ yarn expo start
 
 ## Contributing
 
-We welcome contributions from the community! Please read our [contribution guidelines](Link-to-contribution-guidelines-here) before getting started.
+We welcome contributions from the community! Email me @lilleymanryan2020@gmail.com
 
 
 
